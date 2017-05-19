@@ -1,0 +1,34 @@
+{
+  "name": "hybrid_test_space_01",
+  "version": "1.0.0",
+  "description": "universal build templatefor multichannel",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "PourabKarchaudhuri@36023",
+  "license": "ISC",
+  "dependencies": {
+    "alexa-sdk": "^1.0.8",
+    "apiai": "2.0.5",
+    "async": "^2.0.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "html-entities": "^1.2.0",
+    "json-bigint": "^0.2.0",
+    "node-uuid": "^1.4.7",
+    "request": "^2.79.0",
+    "request-promise":"*",
+    "alexa-verifier":"^0.0.5",
+    "console-stamp": "^0.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
