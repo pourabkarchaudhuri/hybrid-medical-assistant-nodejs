@@ -38,7 +38,7 @@ var apiAIGoogle=require('./src/apiAIGoogle');
 
 //=======================================HANDLER FUNCTION FOR AWS LAMBDA FOR CHANNEL DETECTION=====================================
 //handler function for AWS Lambda
-
+//
 exports.handler = function(event, context, callback){
 
   console.log("1"+JSON.stringify(event));
