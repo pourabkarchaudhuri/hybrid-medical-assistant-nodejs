@@ -74,7 +74,7 @@ module.exports ={
              {
 
                console.log("NLP DID NOT RETURN SYMPTOM ID");
-               console.log(body);
+               console.log(global.parsedBody);
                var ResponseString="I didn\'t get that. Try rephrasing that symptom. Give me one symptom at a time.";
                var googleResponse={
                                  "speech": ResponseString,
@@ -89,7 +89,7 @@ module.exports ={
              else
             {
               console.log("NLP RETURNED SYMPTOM ID");
-              console.log(body);
+              console.log(global.parsedBody);
               var diagnosisSymptomName=global.parsedBody.mentions[0].name;
               global.diagnosisSymptomName=diagnosisSymptomName;
               console.log("NLP Diagnosed Symptom Name : "+diagnosisSymptomName);
