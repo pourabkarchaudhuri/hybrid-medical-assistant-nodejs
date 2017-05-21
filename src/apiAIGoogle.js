@@ -12,7 +12,7 @@ var request=require('request');
 //====================================================================//
 module.exports ={
 //
-        DiagnosisTrigger: function(event,context){
+        DiagnosisTrigger: function(event,context,callback){
                 console.log("Entering Diagnosis Trigger Google");
                 var ageValueNumber=event.result.parameters.ageValue.amount;
                 global.ageValueNumber=ageValueNumber;
@@ -37,7 +37,7 @@ module.exports ={
                 console.log("Exiting Diagnosis Trigger Google");
           },//END AGE AND GENDER INPUT function
 
-          SaySymptomTrigger: function(event,context){
+          SaySymptomTrigger: function(event,context,callback){
                   console.log("Entering saySymptom Trigger Google");
                   var symptomString=event.result.parameters.inputSymptom;
                   global.symptomString=symptomString;
@@ -92,7 +92,7 @@ module.exports ={
                          var diagnosisSymptomType=body.mentions[0].orth;
                          console.log("NLP Diagnosed Symptom Type : "+diagnosisSymptomType);
 
-                         processSymptom(event,context);
+                         processSymptom(event,context,callback);
                        }
                      });
 
@@ -100,7 +100,7 @@ module.exports ={
                   console.log("Exiting POST diagnosis Google");
             },//DiagnosisTriggerIntent.GenderInput.FirstSymptom
 
-            processSymptom: function(event,context){
+            processSymptom: function(event,context,callback){
                     console.log("Entering Process POST Google");
 
                     console.log("PROCESSING FOR FURTHER DIAGNOSIS INTENT TRIGGERED");
@@ -246,7 +246,7 @@ module.exports ={
                            console.log(body);
                            global.body=body;
 
-                           processGroupDiagnosis(intent, session, callback);
+                           processGroupDiagnosis(event,context,callback);
                          }//FOR GROUP TYPE QUESTIONS PROCESSING
 
                          else if(body.question.type==='group_multiple')
@@ -255,7 +255,7 @@ module.exports ={
                            console.log(body);
                            global.body=body;
 
-                           processGroupDiagnosis(intent, session, callback);
+                           processGroupDiagnosis(event,context,callback);
                          }//FOR GROUP TYPE QUESTIONS PROCESSING
 
 
@@ -265,7 +265,7 @@ module.exports ={
                     console.log("Exiting Diagnosis Trigger Google");
               },//END AGE AND GENDER INPUT function
 
-              processGroupDiagnosis: function(event,context){
+              processGroupDiagnosis: function(event,context,callback){
                 console.log("GROUP DIAGNOSIS FUNCTION TRIGGERED");
 
                 //console.log(body);
@@ -309,7 +309,7 @@ module.exports ={
                 //speak out the First Group Follow Up
               },//END AGE AND GENDER INPUT function
 
-              sayFinalDiagnosis: function(event,context){
+              sayFinalDiagnosis: function(event,context,callback){
                 console.log("FINAL DIAGNOSED INTENT TRIGGERED");
 
                 var buildURL='https://api.infermedica.com/v2/conditions/'+  global.finalDiseaseId;
@@ -355,24 +355,24 @@ module.exports ={
                 });
               },
 
-              getYesResponse: function (event,context){
+              getYesResponse: function (event,context,callback){
               console.log("FEEDBACK TRUE FOR YES INPUT INTENT TRIGGERED");
               if(global.followUpCounter==1)
                 {
                   global.yesFlag=1;
-                  processSymptom(event,context);
+                  processSymptom(event,context,callback);
 
                   //buildSpeechletResponse sends to uppermost block for ssml response processing
                   //callback sends it back
                 }
               },//YES DIAGNOSIS
 
-              getNoResponse: function (event,context){
+              getNoResponse: function (event,context,callback){
               console.log("FEEDBACK TRUE FOR YES INPUT INTENT TRIGGERED");
               if(global.followUpCounter==1)
                 {
                   global.yesFlag=2;
-                  processSymptom(event,context);
+                  processSymptom(event,context,callback);
 
                   //buildSpeechletResponse sends to uppermost block for ssml response processing
                   //callback sends it back
