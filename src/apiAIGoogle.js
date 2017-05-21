@@ -276,7 +276,7 @@ module.exports ={
               //                   "source": "DuckDuckGo"
               //                 };
               // context.succeed(googleResponse);
-              processSymptom(event,context,callback);
+              this.processSymptom(event,context,callback);
             }
 
           //  context.succeed(facebookResponse);
