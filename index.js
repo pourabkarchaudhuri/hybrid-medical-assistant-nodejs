@@ -53,11 +53,11 @@ exports.handler = function(event, context, callback){
                     //Google
                             console.log("Source Google");
                             if(event.result.action==="DiagnosisTriggerIntent.GenderInput"){
-                              apiAIGoogle.DiagnosisTrigger(event,context,callback);
+                              apiAIGoogle.DiagnosisTrigger(event,context);
                             }//fire Gender and Age Intent
 
                             else if(event.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
-                              apiAIGoogle.SaySymptomTrigger(event,context,callback);
+                              apiAIGoogle.SaySymptomTrigger(event,context);
                             }//fire Symptom Process Chain Intent
 
                             else if(event.result.action==="DiagnosisTriggerIntent.GenderInput.Yes"){
