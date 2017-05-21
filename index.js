@@ -39,7 +39,7 @@ exports.handler = function(event, context, callback){
   console.log("1"+JSON.stringify(event));
   console.log("1"+JSON.stringify(context));
 
-  
+
 
   if(event.hasOwnProperty('result'))//session from APIAI Webhook Request JSON
   {
@@ -52,9 +52,9 @@ exports.handler = function(event, context, callback){
                   {
                     //Google
                             console.log("Source Google");
-                            if(event.result.action==="BMRCalculatorFireIntent"){
-                              apiAIGoogle.BMRCalculator(event,context);
-                            }//fire transport method for bus route path request
+                            if(event.result.action==="DiagnosisTriggerIntent.GenderInput"){
+                              apiAIGoogle.DiagnosisTrigger(event,context);
+                            }//fire Gender and Age Intent
 
                   }
                 }

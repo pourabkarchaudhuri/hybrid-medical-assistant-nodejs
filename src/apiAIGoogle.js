@@ -12,18 +12,33 @@ var request=require('request');
 //====================================================================//
 module.exports ={
 
-        BMRCalculator: function(event,context){
-                console.log("Entering BMR Calculator Facebook");
-                
+        DiagnosisTrigger: function(event,context){
+                console.log("Entering Diagnosis Trigger Google");
+                var ageValueNumber=event.result.parameters.ageValue.amount;
+                global.ageValueNumber=ageValueNumber;
+                console.log("Age : "+ageValueNumber);
+                var ageValueUnit=event.result.parameters.ageValue.amount;
+                console.log("Age : "+ageValueUnit);
 
+                var genderValue=event.result.parameters.genderValue;
+                console.log("Age : "+genderValue);
+                global.genderValue=genderValue;
+                var googleResponse={
+                                  "speech": "",
+                                  "displayText": "",
+                                  "data": {
+                                    "facebook": {
+                                            "text": "Age and Gender Webhook Successful"
 
+                                      }
+                                  },
+                                  "contextOut": [],
+                                  "source": "DuckDuckGo"
+                                };
+                                context.succeed(googleResponse);
 
-                // BMRm = 66.5 + ( 13.75 × weight in kg ) + ( 5.003 × height in cm ) – ( 6.755 × age in years )
-                // BMRw = 655.1 + ( 4.35 × weight in pounds ) + ( 4.7 × height in inches ) - ( 4.7 × age in years )
-
-
-
-                console.log("Ended");
+                }
+                console.log("Exiting Diagnosis Trigger Google");
           }//END ROUTE FUNCTION
 
 }
