@@ -17,7 +17,7 @@ Android
 */
 ////
 //===================================================DEPENDENCIES DECLARATION=====================================================
-
+3
 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -27,13 +27,8 @@ const JSONbig = require('json-bigint');
 const async = require('async');
 const requestPromise = require('request-promise');
 var request=require('request');
-var Alexa = require('alexa-sdk');
 const port = process.env.PORT || 3000;
-var sessionHandlers=require('./src/alexa');
-//var apiAISlack=require('./src/apiAISlack');
-//var apiAIFacebook=require('./src/apiAIFacebook');
 var apiAIGoogle=require('./src/apiAIGoogle');
-//var otherSources=require('./src/otherSources');
 //dependencies.
 
 //=======================================HANDLER FUNCTION FOR AWS LAMBDA FOR CHANNEL DETECTION=====================================
@@ -101,7 +96,7 @@ else
 //ALEXA SKILLS CONTAINER
 //var handlers contain all alexa intents sdk style.
 
-var handlers = sessionHandlers;
+// var handlers = sessionHandlers;
 //===============================================ONE CODE TO RULE THEM ALL===================================================
 /*Yours Truly : Hexaware Innovation Lab (A.K.A : The Geek Squad);☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☻☻☻☻☻☻☻☻☻☻☻☻☻☺☺☺☺☻☻☻☻☺☺*/
 /*Yours Truly : Hexaware Innovation Lab (A.K.A : The Geek Squad);☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☻☻☻☻☻☻☻☻☻☻☻☻☻☺☺☺☺☻☻☻☻☺☺*/
