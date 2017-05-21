@@ -45,7 +45,7 @@ module.exports ={
             console.log("Input Symptom : "+symptomString);
 
 
-            this.SendToParse(function(parsingFirstBody){
+            SendToParse(function(parsingFirstBody){
 
             console.log("Sending : "+global.parsedBody.mentions);
             if(global.parsedBody.mentions.length==0)
@@ -145,7 +145,7 @@ module.exports ={
                callback(global.parsedBody);
               });
         }
-        
+
         function processSymptom(event,context){
                 console.log("Entering Process POST Google");
 
