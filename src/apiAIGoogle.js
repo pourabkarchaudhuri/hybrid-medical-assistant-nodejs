@@ -65,8 +65,8 @@ module.exports ={
                           console.log(body);
                           var ResponseString="I didn\'t get that. Try rephrasing that symptom. Give me one symptom at a time.";
                           var googleResponse={
-                                            "speech": ageGenderResponseString,
-                                            "displayText": ageGenderResponseString,
+                                            "speech": ResponseString,
+                                            "displayText": ResponseString,
                                             "contextOut": [],
                                             "source": "DuckDuckGo"
                                           };
