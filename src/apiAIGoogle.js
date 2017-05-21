@@ -54,7 +54,7 @@ module.exports ={
                      body: { text: global.symptomString, include_tokens: false },
                      json: true };
 
-                     request(options,context, function (error, response, body) {
+                     request(options, function (error, response, body, context) {
                        if (error) throw new Error(error);
 
                        //console.log(body);
