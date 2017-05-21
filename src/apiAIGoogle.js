@@ -23,15 +23,10 @@ module.exports ={
                 var genderValue=event.result.parameters.genderValue;
                 console.log("Age : "+genderValue);
                 global.genderValue=genderValue;
+                var ageGenderResponseString="Age given is "+ageValueNumber+" and gender is "+genderValue;
                 var googleResponse={
-                                  "speech": "",
+                                  "speech": ageGenderResponseString,
                                   "displayText": "",
-                                  "data": {
-                                    "google": {
-                                            "text": "Age and Gender Webhook Successful"
-
-                                      }
-                                  },
                                   "contextOut": [],
                                   "source": "DuckDuckGo"
                                 };

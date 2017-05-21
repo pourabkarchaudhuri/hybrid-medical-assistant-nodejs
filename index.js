@@ -38,7 +38,7 @@ exports.handler = function(event, context, callback){
 
   console.log("1"+JSON.stringify(event));
   console.log("1"+JSON.stringify(context));
-  console.log("1"+JSON.stringify(callback));
+  //console.log("1"+JSON.stringify(callback));
 
 
   if(event.hasOwnProperty('result'))//session from APIAI Webhook Request JSON
