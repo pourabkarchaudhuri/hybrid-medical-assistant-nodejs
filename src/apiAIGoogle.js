@@ -37,7 +37,7 @@ module.exports ={
                 console.log("Exiting Diagnosis Trigger Google");
           },//END AGE AND GENDER INPUT function
 
-          SendToParse: function(callback,latitude,Longitude){
+          SendToParse: function(callback){
 
             var options = { method: 'POST',
               url: 'https://api.infermedica.com/v2/parse',
