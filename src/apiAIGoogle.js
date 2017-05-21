@@ -31,13 +31,14 @@ module.exports ={
                                   "source": "DuckDuckGo"
                                 };
                 context.succeed(googleResponse);
-
+                global.followUpCounter=0;
+                global.yesFlag=0;
 
                 console.log("Exiting Diagnosis Trigger Google");
-          }//END AGE AND GENDER INPUT function
+          },//END AGE AND GENDER INPUT function
 
           saySymptom: function(event,context){
-                  console.log("Entering Diagnosis Trigger Google");
+                  console.log("Entering saySymptom Trigger Google");
                   var symptomString=event.result.parameters.inputSymptom;
                   global.symptomString=symptomString;
                   console.log("Input Symptom : "+symptomString);
@@ -97,7 +98,7 @@ module.exports ={
 
 
                   console.log("Exiting POST diagnosis Google");
-            }//DiagnosisTriggerIntent.GenderInput.FirstSymptom
+            },//DiagnosisTriggerIntent.GenderInput.FirstSymptom
 
             processSymptom: function(event,context){
                     console.log("Entering Process POST Google");
@@ -262,7 +263,7 @@ module.exports ={
 
 
                     console.log("Exiting Diagnosis Trigger Google");
-              }//END AGE AND GENDER INPUT function
+              },//END AGE AND GENDER INPUT function
 
               processGroupDiagnosis: function(event,context){
                 console.log("GROUP DIAGNOSIS FUNCTION TRIGGERED");
@@ -306,7 +307,7 @@ module.exports ={
                 global.yesFlag=0;
 
                 //speak out the First Group Follow Up
-              }//END AGE AND GENDER INPUT function
+              },//END AGE AND GENDER INPUT function
 
               sayFinalDiagnosis: function(event,context){
                 console.log("FINAL DIAGNOSED INTENT TRIGGERED");
@@ -352,6 +353,30 @@ module.exports ={
                                   };
                   context.succeed(googleResponse);
                 });
-              }//END FINAL RESPONSE function
+              },
+
+              getYesResponse: function (event,context){
+              console.log("FEEDBACK TRUE FOR YES INPUT INTENT TRIGGERED");
+              if(global.followUpCounter==1)
+                {
+                  global.yesFlag=1;
+                  processSymptom(event,context);
+                  
+                  //buildSpeechletResponse sends to uppermost block for ssml response processing
+                  //callback sends it back
+                }
+              },//YES DIAGNOSIS
+
+              getNoResponse: function (event,context){
+              console.log("FEEDBACK TRUE FOR YES INPUT INTENT TRIGGERED");
+              if(global.followUpCounter==1)
+                {
+                  global.yesFlag=2;
+                  processSymptom(event,context);
+
+                  //buildSpeechletResponse sends to uppermost block for ssml response processing
+                  //callback sends it back
+                }
+              }//END NO DIAGNOSIS
 
 }

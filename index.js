@@ -57,8 +57,16 @@ exports.handler = function(event, context, callback){
                             }//fire Gender and Age Intent
 
                             else if(event.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
-                              apiAIGoogle.saySymptom(event,context);
-                            }//fire Gender and Age Intent
+                              apiAIGoogle.SaySymptomTrigger(event,context);
+                            }//fire Symptom Process Chain Intent
+
+                            else if(event.result.action==="DiagnosisTriggerIntent.GenderInput.Yes"){
+                              apiAIGoogle.getYesResponse(event,context);
+                            }//fire Symptom Process Chain Intent
+
+                            else if(event.result.action==="DiagnosisTriggerIntent.GenderInput.No"){
+                              apiAIGoogle.getNoResponse(event,context);
+                            }//fire Symptom Process Chain Intent
 
                   }
                 }
