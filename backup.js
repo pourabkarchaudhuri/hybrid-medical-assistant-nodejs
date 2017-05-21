@@ -37,150 +37,68 @@ module.exports ={
                 console.log("Exiting Diagnosis Trigger Google");
           },//END AGE AND GENDER INPUT function
 
-          SendToParse: function(callback,latitude,Longitude){
+          SaySymptomTrigger: function(event,context,callback){
+                  console.log("Entering saySymptom Trigger Google");
+                  var symptomString=event.result.parameters.inputSymptom;
+                  global.symptomString=symptomString;
+                  console.log("Input Symptom : "+symptomString);
 
-            var options = { method: 'POST',
-              url: 'https://api.infermedica.com/v2/parse',
-              headers:
-              { 'postman-token': '785d8d42-c9fd-b137-d1da-e44cfa4d64f1',
-               'cache-control': 'no-cache',
-               'app-id': '03d4fd34',
-               'app-key': '97fdf41e07745fe24dc8a7f8dfdad177',
-               'content-type': 'application/json' },
-               body: { text: global.symptomString, include_tokens: false },
-               json: true };
+                  var options = { method: 'POST',
+                    url: 'https://api.infermedica.com/v2/parse',
+                    headers:
+                    { 'postman-token': '785d8d42-c9fd-b137-d1da-e44cfa4d64f1',
+                     'cache-control': 'no-cache',
+                     'app-id': '03d4fd34',
+                     'app-key': '97fdf41e07745fe24dc8a7f8dfdad177',
+                     'content-type': 'application/json' },
+                     body: { text: global.symptomString, include_tokens: false },
+                     json: true };
 
-               request(options, function (error, response, body) {
-                 if (error) throw new Error(error);
+                     request(options, function (error, response, body) {
+                       if (error) throw new Error(error);
 
-                 //console.log(body);
-                 console.log(body);
-                 global.parsedBody=body;
-                 callback(global.parsedBody);
-                });
-          },
+                       //console.log(body);
+                       console.log(body.mentions);
+                       if(body.mentions.length==0)
+                        {
 
-          SaySymptomTrigger: function(event,context){
-            console.log("Entering saySymptom Trigger Google");
-            var symptomString=event.result.parameters.inputSymptom;
-            global.symptomString=symptomString;
-            console.log("Input Symptom : "+symptomString);
-
-
-            this.SendToParse(function(location){
-
-            console.log("Sending : "+global.parsedBody.mentions);
-            if(global.parsedBody.mentions.length==0)
-             {
-
-               console.log("NLP DID NOT RETURN SYMPTOM ID");
-               console.log(body);
-               var ResponseString="I didn\'t get that. Try rephrasing that symptom. Give me one symptom at a time.";
-               var googleResponse={
-                                 "speech": ResponseString,
-                                 "displayText": ResponseString,
-                                 "contextOut": [],
-                                 "source": "DuckDuckGo"
-                               };
-               context.succeed(googleResponse);
+                          console.log("NLP DID NOT RETURN SYMPTOM ID");
+                          console.log(body);
+                          var ResponseString="I didn\'t get that. Try rephrasing that symptom. Give me one symptom at a time.";
+                          var googleResponse={
+                                            "speech": ResponseString,
+                                            "displayText": ResponseString,
+                                            "contextOut": [],
+                                            "source": "DuckDuckGo"
+                                          };
+                          context.succeed(googleResponse);
 
 
-             }
-             else
-            {
-              console.log("NLP RETURNED SYMPTOM ID");
-              console.log(body);
-              var diagnosisSymptomName=global.parsedBody.mentions[0].name;
-              global.diagnosisSymptomName=diagnosisSymptomName;
-              console.log("NLP Diagnosed Symptom Name : "+diagnosisSymptomName);
-              var diagnosisSymptomId=global.parsedBody.mentions[0].id;
-              global.diagnosisSymptomId=diagnosisSymptomId;
-              console.log("NLP Diagnosed Symptom ID : "+diagnosisSymptomId);
-              var diagnosisSymptomStatus=global.parsedBody.mentions[0].choice_id;
-              global.diagnosisSymptomStatus=diagnosisSymptomStatus;
-              console.log("NLP Diagnosed Symptom Status : "+diagnosisSymptomStatus);
-              var diagnosisSymptomType=global.parsedBody.mentions[0].orth;
-              console.log("NLP Diagnosed Symptom Type : "+diagnosisSymptomType);
-              console.log("NLP DID NOT RETURN SYMPTOM ID");
-
-              var ResponseString="I didn\'t get that. Try rephrasing that symptom. Give me one symptom at a time.";
-              var googleResponse={
-                                "speech": diagnosisSymptomName,
-                                "displayText": diagnosisSymptomName,
-                                "contextOut": [],
-                                "source": "DuckDuckGo"
-                              };
-              context.succeed(googleResponse);
-              //processSymptom(event,context,callback);
-            }
-
-          //  context.succeed(facebookResponse);
-            console.log("Ended Test");
-          });
-
-        },
-//           SaySymptomTrigger: function(event,context,callback){
-//                   console.log("Entering saySymptom Trigger Google");
-//                   var symptomString=event.result.parameters.inputSymptom;
-//                   global.symptomString=symptomString;
-//                   console.log("Input Symptom : "+symptomString);
+                        }
 //
-//                   var options = { method: 'POST',
-//                     url: 'https://api.infermedica.com/v2/parse',
-//                     headers:
-//                     { 'postman-token': '785d8d42-c9fd-b137-d1da-e44cfa4d64f1',
-//                      'cache-control': 'no-cache',
-//                      'app-id': '03d4fd34',
-//                      'app-key': '97fdf41e07745fe24dc8a7f8dfdad177',
-//                      'content-type': 'application/json' },
-//                      body: { text: global.symptomString, include_tokens: false },
-//                      json: true };
-//
-//                      request(options, function (error, response, body) {
-//                        if (error) throw new Error(error);
-//
-//                        //console.log(body);
-//                        console.log(body.mentions);
-//                        if(body.mentions.length==0)
-//                         {
-//
-//                           console.log("NLP DID NOT RETURN SYMPTOM ID");
-//                           console.log(body);
-//                           var ResponseString="I didn\'t get that. Try rephrasing that symptom. Give me one symptom at a time.";
-//                           var googleResponse={
-//                                             "speech": ResponseString,
-//                                             "displayText": ResponseString,
-//                                             "contextOut": [],
-//                                             "source": "DuckDuckGo"
-//                                           };
-//                           context.succeed(googleResponse);
-//
-//
-//                         }
-// //
-//                         else
-//                        {
-//                          console.log("NLP RETURNED SYMPTOM ID");
-//                          console.log(body);
-//                          var diagnosisSymptomName=body.mentions[0].name;
-//                          global.diagnosisSymptomName=diagnosisSymptomName;
-//                          console.log("NLP Diagnosed Symptom Name : "+diagnosisSymptomName);
-//                          var diagnosisSymptomId=body.mentions[0].id;
-//                          global.diagnosisSymptomId=diagnosisSymptomId;
-//                          console.log("NLP Diagnosed Symptom ID : "+diagnosisSymptomId);
-//                          var diagnosisSymptomStatus=body.mentions[0].choice_id;
-//                          global.diagnosisSymptomStatus=diagnosisSymptomStatus;
-//                          console.log("NLP Diagnosed Symptom Status : "+diagnosisSymptomStatus);
-//                          var diagnosisSymptomType=body.mentions[0].orth;
-//                          console.log("NLP Diagnosed Symptom Type : "+diagnosisSymptomType);
-//
-//                          processSymptom(event,context,callback);
-//                        }
-//                      });
-//
-//
-//                   console.log("Exiting POST diagnosis Google");
-//             },//DiagnosisTriggerIntent.GenderInput.FirstSymptom
+                        else
+                       {
+                         console.log("NLP RETURNED SYMPTOM ID");
+                         console.log(body);
+                         var diagnosisSymptomName=body.mentions[0].name;
+                         global.diagnosisSymptomName=diagnosisSymptomName;
+                         console.log("NLP Diagnosed Symptom Name : "+diagnosisSymptomName);
+                         var diagnosisSymptomId=body.mentions[0].id;
+                         global.diagnosisSymptomId=diagnosisSymptomId;
+                         console.log("NLP Diagnosed Symptom ID : "+diagnosisSymptomId);
+                         var diagnosisSymptomStatus=body.mentions[0].choice_id;
+                         global.diagnosisSymptomStatus=diagnosisSymptomStatus;
+                         console.log("NLP Diagnosed Symptom Status : "+diagnosisSymptomStatus);
+                         var diagnosisSymptomType=body.mentions[0].orth;
+                         console.log("NLP Diagnosed Symptom Type : "+diagnosisSymptomType);
+
+                         processSymptom(event,context,callback);
+                       }
+                     });
+
+
+                  console.log("Exiting POST diagnosis Google");
+            },//DiagnosisTriggerIntent.GenderInput.FirstSymptom
 
             processSymptom: function(event,context,callback){
                     console.log("Entering Process POST Google");
