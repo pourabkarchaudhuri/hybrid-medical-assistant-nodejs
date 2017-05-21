@@ -37,7 +37,7 @@ module.exports ={
                 console.log("Exiting Diagnosis Trigger Google");
           },//END AGE AND GENDER INPUT function
 
-          saySymptom: function(event,context){
+          SaySymptomTrigger: function(event,context){
                   console.log("Entering saySymptom Trigger Google");
                   var symptomString=event.result.parameters.inputSymptom;
                   global.symptomString=symptomString;
@@ -361,7 +361,7 @@ module.exports ={
                 {
                   global.yesFlag=1;
                   processSymptom(event,context);
-                  
+
                   //buildSpeechletResponse sends to uppermost block for ssml response processing
                   //callback sends it back
                 }
