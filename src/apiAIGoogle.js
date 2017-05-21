@@ -75,7 +75,7 @@ module.exports ={
 
 
                         }
-
+//
                         else
                        {
                          console.log("NLP RETURNED SYMPTOM ID");
