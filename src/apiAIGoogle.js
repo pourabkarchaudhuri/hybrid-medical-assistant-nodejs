@@ -18,7 +18,7 @@ module.exports ={
                 global.ageValueNumber=ageValueNumber;
                 console.log("Age : "+ageValueNumber);
                 var ageValueUnit=event.result.parameters.ageValue.amount;
-                console.log("Age : "+ageValueUnit);
+                //console.log("Age : "+ageValueUnit);
 
                 var genderValue=event.result.parameters.genderValue;
                 console.log("Age : "+genderValue);
@@ -27,7 +27,7 @@ module.exports ={
                                   "speech": "",
                                   "displayText": "",
                                   "data": {
-                                    "facebook": {
+                                    "google": {
                                             "text": "Age and Gender Webhook Successful"
 
                                       }
