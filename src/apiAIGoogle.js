@@ -26,7 +26,7 @@ module.exports ={
                 var ageGenderResponseString="Age given is "+ageValueNumber+" and gender is "+genderValue;
                 var googleResponse={
                                   "speech": ageGenderResponseString,
-                                  "displayText": "",
+                                  "displayText": ageGenderResponseString,
                                   "contextOut": [],
                                   "source": "DuckDuckGo"
                                 };
