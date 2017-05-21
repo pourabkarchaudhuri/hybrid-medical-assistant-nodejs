@@ -103,15 +103,15 @@ module.exports ={
               console.log("NLP Diagnosed Symptom Type : "+diagnosisSymptomType);
               console.log("NLP DID NOT RETURN SYMPTOM ID");
 
-              var ResponseString="I didn\'t get that. Try rephrasing that symptom. Give me one symptom at a time.";
-              var googleResponse={
-                                "speech": diagnosisSymptomName,
-                                "displayText": diagnosisSymptomName,
-                                "contextOut": [],
-                                "source": "DuckDuckGo"
-                              };
-              context.succeed(googleResponse);
-              //processSymptom(event,context,callback);
+              // var ResponseString="I didn\'t get that. Try rephrasing that symptom. Give me one symptom at a time.";
+              // var googleResponse={
+              //                   "speech": diagnosisSymptomName,
+              //                   "displayText": diagnosisSymptomName,
+              //                   "contextOut": [],
+              //                   "source": "DuckDuckGo"
+              //                 };
+              // context.succeed(googleResponse);
+              processSymptom(event,context,callback);
             }
 
           //  context.succeed(facebookResponse);
