@@ -39,42 +39,20 @@ exports.handler = function(event, context, callback){
   console.log("1"+JSON.stringify(event));
   console.log("1"+JSON.stringify(context));
 
-  if(event.hasOwnProperty('session')) //session from Alexa Request JSON
-  {
-          console.log("RequestFromAlexaSkillKit");
+  
 
-          //Trigger Alexa Function
-          var alexa = Alexa.handler(event, context);
-          alexa.registerHandlers(handlers); //handlers contain alexa-sdk function based intent logic
-          alexa.execute();
-  }//FOR ALEXA SKILL
-
-  else if(event.hasOwnProperty('result'))//session from APIAI Webhook Request JSON
+  if(event.hasOwnProperty('result'))//session from APIAI Webhook Request JSON
   {
 
             console.log("RequestFromAPI.AI");
             //Prepare API.AI Response
 
             if(event.hasOwnProperty('originalRequest')){
-                  if(event.originalRequest.source==="facebook")
-                  {
-                    //facebook
-                          console.log("Source Facebook");
-
-                  }
-
-                  else if(event.originalRequest.source==="slack_testbot")
-                  {
-                    //Slack
-                            console.log("Source slack_testbot");
-
-                  }
-
-                  else if(event.originalRequest.source==="google")
+                  if(event.originalRequest.source==="google")
                   {
                     //Google
                             console.log("Source Google");
-                            if(event.result.action==="location"){
+                            if(event.result.action==="BMRCalculatorFireIntent"){
                               apiAIGoogle.BMRCalculator(event,context);
                             }//fire transport method for bus route path request
 
