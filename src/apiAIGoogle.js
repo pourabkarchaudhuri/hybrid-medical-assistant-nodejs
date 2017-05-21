@@ -35,9 +35,9 @@ module.exports ={
                                   "contextOut": [],
                                   "source": "DuckDuckGo"
                                 };
-                                context.succeed(googleResponse);
+                context.succeed(googleResponse);
 
-                }
+
                 console.log("Exiting Diagnosis Trigger Google");
           }//END ROUTE FUNCTION
 
