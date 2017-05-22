@@ -423,7 +423,7 @@ module.exports ={
                   console.log(JSON.parse(body).extras.hint);
                   var conditionAdviceResult=JSON.parse(body).extras.hint;
 
-                  var ResponseString="Based on the symptoms you have given,there is a chance that you may have "+global.finalDiseaseName+". That\'s just what I can figure out. "+conditionAdviceResult;
+                  var ResponseString="Based on the symptoms you have given, there is a chance that you may have "+global.finalDiseaseName+". That\'s just what I can figure out. "+conditionAdviceResult;
                   //Speak Out var groupText; That is the question : "How bad is the pain? Is it + "SEVERE"? "
                   var googleResponse={
                                     "speech": ResponseString,
@@ -432,5 +432,6 @@ module.exports ={
                                     "source": "DuckDuckGo"
                                   };
                   context.succeed(googleResponse);
+                  global.useCaseFlag=0;
                 });
               }
