@@ -22,8 +22,9 @@ module.exports ={
                 //console.log("Age : "+ageValueUnit);
 
                 var genderValue=event.result.parameters.genderValue;
-                console.log("Age : "+genderValue);
                 global.genderValue=genderValue;
+                console.log("Sex : "+global.genderValue);
+
                 var ResponseString="Cool, start by giving one symptom that you are facing. I will ask you some questions if I recognise the symptom. Answer the follow up questions with yes or no.";
                 var googleResponse={
                                   "speech": ResponseString,
@@ -228,6 +229,7 @@ module.exports ={
                  else if(global.followUpCounter==0)
                  {
                      console.log("global.followUpCounter==0");
+
                      var result = [];
                      global.result=result;
                      global.result.push({id: global.diagnosisSymptomId, choice_id: global.diagnosisSymptomStatus});
