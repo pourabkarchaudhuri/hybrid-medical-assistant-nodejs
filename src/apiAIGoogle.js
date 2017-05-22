@@ -156,7 +156,7 @@ module.exports ={
             'app-id': '03d4fd34',
             'app-key': '97fdf41e07745fe24dc8a7f8dfdad177',
             'content-type': 'application/json' },
-            body: buildBody,
+            body: global.buildBody,
             json: true };
 
             request(options, function (error, response, body) {
