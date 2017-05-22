@@ -170,7 +170,7 @@ module.exports ={
               var bodyLength=global.diagnosisBody.conditions.length;
               var i=0;
               var index;
-              var flag=0;
+              global.flag=0;
               for(i=0;i<bodyLength;i++)
               {
                 if(global.diagnosisBody.conditions[i].probability>=0.9000)
