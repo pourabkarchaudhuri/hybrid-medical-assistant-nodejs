@@ -322,7 +322,7 @@ module.exports ={
                      else if(global.diagnosisBody.question.type==='group_single')
                      {
                        console.log("GROUP SINGLE TYPE HIT");
-                       console.log(body);
+                       console.log(global.diagnosisBody);
                        global.diagnosisBody=body;
 
                        processGroupDiagnosis(event,context);
@@ -331,7 +331,7 @@ module.exports ={
                      else if(global.diagnosisBody.question.type==='group_multiple')
                      {
                        console.log("GROUP MULTIPLE TYPE HIT");
-                       console.log(body);
+                       console.log(global.diagnosisBody);
                        global.diagnosisBody=body;
 
                        processGroupDiagnosis(event,context);
