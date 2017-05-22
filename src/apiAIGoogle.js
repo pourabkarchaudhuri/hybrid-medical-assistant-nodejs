@@ -249,7 +249,7 @@ module.exports ={
 
                  SendToDiagnose(function(buildBody){
 
-                   if(global.DiagnoseBody.question.type==='single')
+                   if(global.diagnosisBody.question.type==='single')
                  //NIER POINT
 
                      {
@@ -281,15 +281,15 @@ module.exports ={
                          {
                              console.log("CONTINUE TO ASK QUESTIONS");
                              console.log(body);
-                             var followUpQuestion=body.question.text;
-                             console.log("Follow Up Question Type : "+body.question.type);
-                             var followUpQuestionType=body.question.type;
+                             var followUpQuestion=global.diagnosisBody.question.text;
+                             console.log("Follow Up Question Type : "+global.diagnosisBody.question.type);
+                             var followUpQuestionType=global.diagnosisBody.question.type;
                              console.log("Follow Up Question : "+followUpQuestion);
-                             console.log("Follow Up Question ID : "+body.question.items[0].id);
-                             var followUpSymptomId=body.question.items[0].id;
+                             console.log("Follow Up Question ID : "+global.diagnosisBody.question.items[0].id);
+                             var followUpSymptomId=global.diagnosisBody.question.items[0].id;
                              global.followUpSymptomId=followUpSymptomId;
                              console.log("New Single Id to Push : "+global.followUpSymptomId);
-                             console.log("Follow Up Question Symptom Lookup Name : "+body.question.items[0].name);
+                             console.log("Follow Up Question Symptom Lookup Name : "+global.diagnosisBody.question.items[0].name);
 
                              var googleResponse={
                                                "speech": followUpQuestion,
@@ -309,20 +309,20 @@ module.exports ={
 
                      }//FOR SINGLE TYPE QUESTIONS PROCESSING
 
-                     else if(body.question.type==='group_single')
+                     else if(global.diagnosisBody.question.type==='group_single')
                      {
                        console.log("GROUP SINGLE TYPE HIT");
                        console.log(body);
-                       global.body=body;
+                       global.diagnosisBody=body;
 
                        processGroupDiagnosis(event,context);
                      }//FOR GROUP TYPE QUESTIONS PROCESSING
 
-                     else if(body.question.type==='group_multiple')
+                     else if(global.diagnosisBody.question.type==='group_multiple')
                      {
                        console.log("GROUP MULTIPLE TYPE HIT");
                        console.log(body);
-                       global.body=body;
+                       global.diagnosisBody=body;
 
                        processGroupDiagnosis(event,context);
                      }//FOR GROUP TYPE QUESTIONS PROCESSING
@@ -339,12 +339,12 @@ module.exports ={
                 console.log("GROUP DIAGNOSIS FUNCTION TRIGGERED");
 
                 //console.log(body);
-                console.log(global.body.question.type);//group_multiple
+                console.log(global.diagnosisBody.question.type);//group_multiple
 
-                console.log(global.body.question.text);//The followUp Question
-                var groupText=global.body.question.text;
-                console.log(global.body.question.items.length);
-                var groupTypeBodyLength=global.body.question.items.length;
+                console.log(global.diagnosisBody.question.text);//The followUp Question
+                var groupText=global.diagnosisBody.question.text;
+                console.log(global.diagnosisBody.question.items.length);
+                var groupTypeBodyLength=global.diagnosisBody.question.items.length;
 
                 global.groupIndex=0;
                 var i=0;
@@ -354,10 +354,10 @@ module.exports ={
                     speakCounter++;
                 }
                 console.log("Asking Question Number : "+speakCounter);
-                console.log(global.body.question.items[global.groupIndex].name);
-                var firstInitiateGroupFollowUpName=global.body.question.items[global.groupIndex].name;
-                console.log(global.body.question.items[global.groupIndex].id);
-                var firstInitiateGroupFollowUpId=global.body.question.items[global.groupIndex].id;
+                console.logglobal.diagnosisBody.question.items[global.groupIndex].name);
+                var firstInitiateGroupFollowUpName=global.diagnosisBody.question.items[global.groupIndex].name;
+                console.log(global.diagnosisBody.question.items[global.groupIndex].id);
+                var firstInitiateGroupFollowUpId=global.diagnosisBody.question.items[global.groupIndex].id;
                 global.followUpSymptomId=firstInitiateGroupFollowUpId;
                 console.log("New Group Id to Push : "+global.followUpSymptomId);
                 global.groupIndex++;
