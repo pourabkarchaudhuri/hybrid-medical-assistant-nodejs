@@ -323,7 +323,7 @@ module.exports ={
                      {
                        console.log("GROUP SINGLE TYPE HIT");
                        console.log(global.diagnosisBody);
-                       global.diagnosisBody=body;
+                       //global.diagnosisBody=body;
 
                        processGroupDiagnosis(event,context);
                      }//FOR GROUP TYPE QUESTIONS PROCESSING
@@ -332,7 +332,7 @@ module.exports ={
                      {
                        console.log("GROUP MULTIPLE TYPE HIT");
                        console.log(global.diagnosisBody);
-                       global.diagnosisBody=body;
+                       //global.diagnosisBody=body;
 
                        processGroupDiagnosis(event,context);
                      }//FOR GROUP TYPE QUESTIONS PROCESSING
