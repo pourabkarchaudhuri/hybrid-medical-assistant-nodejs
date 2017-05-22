@@ -183,7 +183,7 @@ module.exports ={
               console.log("Probability Boolean : "+global.flag);
 
 
-               callback(global.diagnosisBody);
+               callback(diagnosisBody);
               });
         }
 
@@ -241,7 +241,7 @@ module.exports ={
 
                  console.log("Ready to send Request");
 
-                 SendToDiagnose(function(global.buildBody){
+                 SendToDiagnose(function(buildBody){
 
                    if(global.DiagnoseBody.question.type==='single')
                  //NIER POINT
