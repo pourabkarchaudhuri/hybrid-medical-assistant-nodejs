@@ -156,13 +156,13 @@ module.exports ={
             'app-id': '03d4fd34',
             'app-key': '97fdf41e07745fe24dc8a7f8dfdad177',
             'content-type': 'application/json' },
-            body: global.buildBody,
+            body: buildBody,
             json: true };
 
             request(options, function (error, response, body) {
               if (error) throw new Error(error);
               console.log("POST request");
-              console.log("Recieved Body"+JSON.stringify(body));
+              console.log("Recieved Body : "+body);
 
               global.diagnosisBody=body;
               console.log("Number of Probable Conditions : "+global.diagnosisBody.conditions.length);
@@ -201,11 +201,11 @@ module.exports ={
                          global.diagnosisSymptomStatus='present';
 
                          global.result.push({id: global.followUpSymptomId, choice_id: global.diagnosisSymptomStatus});
-                         global.buildBody= { sex: global.genderValue,
+                         var buildBody= { sex: global.genderValue,
                                           age: global.ageValueNumber,
                                           evidence: global.result
                                         };
-                         console.log("Follow Up Counter 1 && global.yesFlag=1 (Present) : "+global.buildBody);
+                         console.log("Follow Up Counter 1 && global.yesFlag=1 (Present) : "+buildBody);
 
                        }
 
@@ -216,11 +216,11 @@ module.exports ={
                          global.diagnosisSymptomStatus='absent';
 
                          global.result.push({id: global.followUpSymptomId, choice_id: global.diagnosisSymptomStatus});
-                         global.buildBody= { sex: global.genderValue,
+                         var buildBody= { sex: global.genderValue,
                                           age: global.ageValueNumber,
                                           evidence: global.result
                                         };
-                         console.log("Follow Up Counter 1 && global.yesFlag=2 (Absent) : "+global.buildBody);
+                         console.log("Follow Up Counter 1 && global.yesFlag=2 (Absent) : "+buildBody);
                        }
                  }
                  else if(global.followUpCounter==0)
@@ -229,16 +229,16 @@ module.exports ={
                      var result = [];
                      global.result=result;
                      global.result.push({id: global.diagnosisSymptomId, choice_id: global.diagnosisSymptomStatus});
-                     global.buildBody= { sex: global.genderValue,
+                     var buildBody= { sex: global.genderValue,
                                       age: global.ageValueNumber,
                                       evidence: global.result
                                     };
-                     console.log("Follow Up Counter 0 : "+JSON.stringify(global.buildBody));
+                     console.log("Follow Up Counter 0 : "+JSON.stringify(buildBody));
                  }
 
                  console.log("Ready to send Request");
 
-                 SendToDiagnose(function(DiagnoseBody){
+                 SendToDiagnose(function(buildBody){
 
                    if(global.DiagnoseBody.question.type==='single')
                  //NIER POINT
