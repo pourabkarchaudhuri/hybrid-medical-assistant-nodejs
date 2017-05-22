@@ -60,11 +60,11 @@ exports.handler = function(event, context, callback){
                               apiAIGoogle.SaySymptomTrigger(event,context);
                             }//fire Symptom Process Chain Intent
 
-                            else if(event.result.action==="DiagnosisTriggerIntent.GenderInput.Yes"){
+                            else if(event.result.action==="UniversalYesIntent"){
                               apiAIGoogle.getYesResponse(event,context,callback);
                             }//fire Symptom Process Chain Intent
 
-                            else if(event.result.action==="DiagnosisTriggerIntent.GenderInput.No"){
+                            else if(event.result.action==="UniversalNoIntent"){
                               apiAIGoogle.getNoResponse(event,context,callback);
                             }//fire Symptom Process Chain Intent
 

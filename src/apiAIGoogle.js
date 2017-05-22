@@ -14,6 +14,9 @@ module.exports ={
 //
 
         DiagnosisTrigger: function(event,context){
+
+                global.useCaseFlag=1;
+
                 console.log("Entering Diagnosis Trigger Google");
                 var ageValueNumber=event.result.parameters.ageValue.amount;
                 global.ageValueNumber=ageValueNumber;
@@ -100,27 +103,34 @@ module.exports ={
 
         getYesResponse: function (event,context){
         console.log("FEEDBACK TRUE FOR YES INPUT INTENT TRIGGERED");
-        if(global.followUpCounter==1)
-          {
-            global.yesFlag=1;
-            processSymptom(event,context);
+          if(global.useCaseFlag==1)
+          {//Diagnosis Module Yes
+            if(global.followUpCounter==1)
+              {
+                global.yesFlag=1;
+                processSymptom(event,context);
 
-            //buildSpeechletResponse sends to uppermost block for ssml response processing
-            //callback sends it back
-          }
-        },//YES DIAGNOSIS
+                //buildSpeechletResponse sends to uppermost block for ssml response processing
+                //callback sends it back
+              }
+            }
+          },//YES DIAGNOSIS
 
         getNoResponse: function (event,context){
         console.log("FEEDBACK TRUE FOR YES INPUT INTENT TRIGGERED");
-        if(global.followUpCounter==1)
-          {
-            global.yesFlag=2;
-            processSymptom(event,context);
 
-            //buildSpeechletResponse sends to uppermost block for ssml response processing
-            //callback sends it back
-          }
-        }//END NO DIAGNOSIS
+          if(global.useCaseFlag==1)
+          {//Diagnosis Module No
+            if(global.followUpCounter==1)
+              {
+                global.yesFlag=2;
+                processSymptom(event,context);
+
+                //buildSpeechletResponse sends to uppermost block for ssml response processing
+                //callback sends it back
+              }
+            }
+          }//END NO DIAGNOSIS
 }
 //===============================================================================
 
