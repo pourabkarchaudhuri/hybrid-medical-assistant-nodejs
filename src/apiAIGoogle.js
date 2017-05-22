@@ -237,6 +237,7 @@ module.exports ={
                                       age: global.ageValueNumber,
                                       evidence: global.result
                                     };
+                     console.log("Before Body Goes BuildBody Global : "+buildBody);
                      global.buildBody=buildBody;
                      console.log("Follow Up Counter 0 : "+JSON.stringify(global.buildBody));
                  }
