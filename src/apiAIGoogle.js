@@ -280,7 +280,7 @@ module.exports ={
                          else if(global.flag==0)
                          {
                              console.log("CONTINUE TO ASK QUESTIONS");
-                             console.log(body);
+                             console.log(global.diagnosisBody);
                              var followUpQuestion=global.diagnosisBody.question.text;
                              console.log("Follow Up Question Type : "+global.diagnosisBody.question.type);
                              var followUpQuestionType=global.diagnosisBody.question.type;
