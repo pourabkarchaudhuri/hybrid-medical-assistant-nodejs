@@ -169,14 +169,16 @@ module.exports ={
               console.log("Number of Probable Conditions : "+global.diagnosisBody.conditions.length);
               var bodyLength=global.diagnosisBody.conditions.length;
               var i=0;
-              //var index;
+              var index;
               var flag=0;
               for(i=0;i<bodyLength;i++)
               {
                 if(global.diagnosisBody.conditions[i].probability>=0.9000)
                 {
-                  global.index=i;
-                  global.flag=1;
+                  index=i;
+                  global.index=index;
+                  flag=1;
+                  global.flag=flag;
                 }
               }
               //FOUND THE PROBABILTIES INDEX FOR HIGHER THAN 90 PERCENT
