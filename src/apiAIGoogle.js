@@ -354,7 +354,7 @@ module.exports ={
                     speakCounter++;
                 }
                 console.log("Asking Question Number : "+speakCounter);
-                console.logglobal.diagnosisBody.question.items[global.groupIndex].name);
+                console.log(global.diagnosisBody.question.items[global.groupIndex].name);
                 var firstInitiateGroupFollowUpName=global.diagnosisBody.question.items[global.groupIndex].name;
                 console.log(global.diagnosisBody.question.items[global.groupIndex].id);
                 var firstInitiateGroupFollowUpId=global.diagnosisBody.question.items[global.groupIndex].id;
