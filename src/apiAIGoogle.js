@@ -21,7 +21,7 @@ module.exports ={
                 var ageValueUnit=event.result.parameters.ageValue.amount;
                 //console.log("Age : "+ageValueUnit);
 
-                var genderValue=event.result.parameters.genderValue;
+                var genderValue=event.result.parameters.genderValue[0];
                 global.genderValue=genderValue;
                 console.log("Sex : "+global.genderValue);
 
@@ -230,6 +230,7 @@ module.exports ={
                  {
                      console.log("global.followUpCounter==0");
                      console.log("Body Prebuild Data on SexType : "+global.genderValue);
+
                      var result = [];
                      global.result=result;
                      global.result.push({id: global.diagnosisSymptomId, choice_id: global.diagnosisSymptomStatus});
