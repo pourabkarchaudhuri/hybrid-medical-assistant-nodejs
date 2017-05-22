@@ -201,11 +201,11 @@ module.exports ={
                          global.diagnosisSymptomStatus='present';
 
                          global.result.push({id: global.followUpSymptomId, choice_id: global.diagnosisSymptomStatus});
-                         var buildBody= { sex: global.genderValue,
+                         global.buildBody= { sex: global.genderValue,
                                           age: global.ageValueNumber,
                                           evidence: global.result
                                         };
-                         console.log("Follow Up Counter 1 && global.yesFlag=1 (Present) : "+buildBody);
+                         console.log("Follow Up Counter 1 && global.yesFlag=1 (Present) : "+global.buildBody);
 
                        }
 
@@ -216,11 +216,11 @@ module.exports ={
                          global.diagnosisSymptomStatus='absent';
 
                          global.result.push({id: global.followUpSymptomId, choice_id: global.diagnosisSymptomStatus});
-                         var buildBody= { sex: global.genderValue,
+                         global.buildBody= { sex: global.genderValue,
                                           age: global.ageValueNumber,
                                           evidence: global.result
                                         };
-                         console.log("Follow Up Counter 1 && global.yesFlag=2 (Absent) : "+buildBody);
+                         console.log("Follow Up Counter 1 && global.yesFlag=2 (Absent) : "+global.buildBody);
                        }
                  }
                  else if(global.followUpCounter==0)
@@ -229,11 +229,11 @@ module.exports ={
                      var result = [];
                      global.result=result;
                      global.result.push({id: global.diagnosisSymptomId, choice_id: global.diagnosisSymptomStatus});
-                     var buildBody= { sex: global.genderValue,
+                     global.buildBody= { sex: global.genderValue,
                                       age: global.ageValueNumber,
                                       evidence: global.result
                                     };
-                     console.log("Follow Up Counter 0 : "+JSON.stringify(buildBody));
+                     console.log("Follow Up Counter 0 : "+JSON.stringify(global.buildBody));
                  }
 
                  console.log("Ready to send Request");
