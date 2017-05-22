@@ -147,7 +147,7 @@ module.exports ={
         }
 
         function SendToDiagnose(callback){
-          console.log("SendToDiagnose Callback : "+callback);
+
           var options = { method: 'POST',
           url: 'https://api.infermedica.com/v2/diagnosis',
           headers:
@@ -156,7 +156,7 @@ module.exports ={
             'app-id': '03d4fd34',
             'app-key': '97fdf41e07745fe24dc8a7f8dfdad177',
             'content-type': 'application/json' },
-            body: buildBody,
+            body: global.buildBody,
             json: true };
 
             request(options, function (error, response, body) {
@@ -205,7 +205,8 @@ module.exports ={
                                           age: global.ageValueNumber,
                                           evidence: global.result
                                         };
-                         console.log("Follow Up Counter 1 && global.yesFlag=1 (Present) : "+buildBody);
+                         global.buildBody=buildBody;
+                         console.log("Follow Up Counter 1 && global.yesFlag=1 (Present) : "+global.buildBody);
 
                        }
 
@@ -220,7 +221,8 @@ module.exports ={
                                           age: global.ageValueNumber,
                                           evidence: global.result
                                         };
-                         console.log("Follow Up Counter 1 && global.yesFlag=2 (Absent) : "+buildBody);
+                         global.buildBody=buildBody;
+                         console.log("Follow Up Counter 1 && global.yesFlag=2 (Absent) : "+global.buildBody);
                        }
                  }
                  else if(global.followUpCounter==0)
@@ -233,12 +235,13 @@ module.exports ={
                                       age: global.ageValueNumber,
                                       evidence: global.result
                                     };
-                     console.log("Follow Up Counter 0 : "+JSON.stringify(buildBody));
+                     global.buildBody=buildBody;
+                     console.log("Follow Up Counter 0 : "+JSON.stringify(global.buildBody));
                  }
 
                  console.log("Ready to send Request");
 
-                 SendToDiagnose(function(buildBody){
+                 SendToDiagnose(function(global.buildBody){
 
                    if(global.DiagnoseBody.question.type==='single')
                  //NIER POINT
