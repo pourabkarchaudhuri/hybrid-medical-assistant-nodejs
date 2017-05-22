@@ -147,7 +147,7 @@ module.exports ={
         }
 
         function SendToDiagnose(callback){
-          console.log("Going to Fire SendToDiagnose POST : "+global.buildBody);
+          console.log("Going to Fire SendToDiagnose POST : "+JSON.stringify(global.buildBody));
           var options = { method: 'POST',
           url: 'https://api.infermedica.com/v2/diagnosis',
           headers:
@@ -162,7 +162,7 @@ module.exports ={
             request(options, function (error, response, body) {
               if (error) throw new Error(error);
               console.log("POST request");
-              console.log("Recieved Body : "+body);
+              console.log("Recieved Body : "+JSON.stringify(body));
 
               global.diagnosisBody=body;
               console.log("Number of Probable Conditions : "+global.diagnosisBody.conditions.length);
