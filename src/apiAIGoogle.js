@@ -229,7 +229,7 @@ module.exports ={
                  else if(global.followUpCounter==0)
                  {
                      console.log("global.followUpCounter==0");
-
+                     console.log("Body Prebuild Data on SexType : "+global.genderValue);
                      var result = [];
                      global.result=result;
                      global.result.push({id: global.diagnosisSymptomId, choice_id: global.diagnosisSymptomStatus});
