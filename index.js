@@ -43,6 +43,7 @@ var apiAIGoogle=require('./src/apiAIGoogle');
 exports.handler = function(event, context, callback){
 
   console.log("1"+JSON.stringify(event));
+  console.log("2"+JSON.stringify(event.body));
   console.log("1"+JSON.stringify(context));
   //console.log("1"+JSON.stringify(callback));
   awsServerlessExpress.proxy(server, event, context)
