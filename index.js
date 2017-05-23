@@ -26,7 +26,7 @@ const server =  awsServerlessExpress.createServer(app);
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
+// const app = express();
 const https= require('https');
 const JSONbig = require('json-bigint');
 const async = require('async');
@@ -59,7 +59,7 @@ exports.handler = function(event, context, callback){
                     //Google
                              console.log("Source Google");
                              awsServerlessExpress.proxy(server, event, context)
-                          
+
 
                   }
                 }
