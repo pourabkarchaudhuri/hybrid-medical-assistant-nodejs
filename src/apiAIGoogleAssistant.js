@@ -354,7 +354,7 @@ function processSymptom(req,res){
                console.log(global.diagnosisBody);
                //global.diagnosisBody=body;
 
-               processGroupDiagnosis(event,context);
+               processGroupDiagnosis(req,res);
              }//FOR GROUP TYPE QUESTIONS PROCESSING
 
              else if(global.diagnosisBody.question.type==='group_multiple')
@@ -363,7 +363,7 @@ function processSymptom(req,res){
                console.log(global.diagnosisBody);
                //global.diagnosisBody=body;
 
-               processGroupDiagnosis(event,context);
+               processGroupDiagnosis(req,res);
              }//FOR GROUP TYPE QUESTIONS PROCESSING
 
 
