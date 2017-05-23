@@ -82,7 +82,6 @@ function DiagnosisTrigger(req,res){
 //===================================RESPONSE FUNCTIONS BASED ON EACH INTENT FIRED=================================================
 function basicCardDiagnosisTrigger (app,ResponseToSendBackInResponse) {
   app.ask(app.buildRichResponse()
-    .addSimpleResponse(ResponseToSendBackInResponse)
     .addBasicCard(app.buildBasicCard(ResponseToSendBackInResponse) // Note the two spaces before '\n' required for a
     .setSubtitle('This is a subtitle')
     .setTitle('SYMPTOM DIAGNOSIS: Say a symptom')
