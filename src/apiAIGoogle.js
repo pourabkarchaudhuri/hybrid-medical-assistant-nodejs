@@ -7,9 +7,6 @@ var port = process.env.PORT || 3000;
 
 var request=require('request');
 
-const awsServerlessExpress = require('aws-serverless-express')
-const app = require('./apiAIGoogleAssistant');
-const server =  awsServerlessExpress.createServer(app);
 //Dependencies
 //====================================================================//
 module.exports ={
