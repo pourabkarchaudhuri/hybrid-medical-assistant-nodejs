@@ -19,9 +19,7 @@ Android
 //===================================================DEPENDENCIES DECLARATION=====================================================
 
 'use strict';
-const awsServerlessExpress = require('aws-serverless-express')
-const app = require('./src/apiAIGoogleAssistant');
-const server =  awsServerlessExpress.createServer(app);
+
 
 
 const express = require('express');
@@ -34,7 +32,6 @@ const requestPromise = require('request-promise');
 var request=require('request');
 const port = process.env.PORT || 3000;
 var apiAIGoogle=require('./src/apiAIGoogle');
-
 //dependencies.
 
 //=======================================HANDLER FUNCTION FOR AWS LAMBDA FOR CHANNEL DETECTION=====================================
@@ -57,9 +54,23 @@ exports.handler = function(event, context, callback){
                   if(event.originalRequest.source==="google")
                   {
                     //Google
-                             console.log("Source Google");
-                             awsServerlessExpress.proxy(server, event, context)
-                          
+                            console.log("Source Google");
+                            
+                            if(event.result.action==="DiagnosisTriggerIntent.GenderInput"){
+                              apiAIGoogle.DiagnosisTrigger(event,context);
+                            }//fire Gender and Age Intent
+
+                            else if(event.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
+                              apiAIGoogle.SaySymptomTrigger(event,context);
+                            }//fire Symptom Process Chain Intent
+
+                            else if(event.result.action==="UniversalYesIntent"){
+                              apiAIGoogle.getYesResponse(event,context,callback);
+                            }//fire Symptom Process Chain Intent
+
+                            else if(event.result.action==="UniversalNoIntent"){
+                              apiAIGoogle.getNoResponse(event,context,callback);
+                            }//fire Symptom Process Chain Intent
 
                   }
                 }
