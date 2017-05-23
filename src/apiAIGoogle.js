@@ -7,7 +7,9 @@ var port = process.env.PORT || 3000;
 
 var request=require('request');
 
-
+const awsServerlessExpress = require('aws-serverless-express')
+const app = require('./apiAIGoogleAssistant');
+const server =  awsServerlessExpress.createServer(app);
 //Dependencies
 //====================================================================//
 module.exports ={
@@ -29,6 +31,7 @@ module.exports ={
                 console.log("Sex : "+global.genderValue);
 
                 var ResponseString="Cool, start by giving one symptom that you are facing. I will ask you some questions if I recognise the symptom. Answer the follow up questions with yes or no.";
+
                 var googleResponse={
                                   "speech": ResponseString,
                                   "displayText": ResponseString,

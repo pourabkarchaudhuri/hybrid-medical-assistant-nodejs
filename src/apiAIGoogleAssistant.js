@@ -30,13 +30,18 @@ expressapp.use(bodyParser.urlencoded({
 
 expressapp.use(bodyParser.json());
 expressapp.use(awsServerlessExpressMiddleware.eventContext())
-
+console.log("Entering Express File");
 
 expressapp.post('/', function(req, res) {
 
 console.log("POST");
 const assistant = new ApiAiApp({request: req, response: res});
-welcome(assistant);
+
+
+carousel(assistant);
+
+
+
 });
 
 

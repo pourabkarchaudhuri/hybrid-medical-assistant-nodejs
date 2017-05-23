@@ -45,7 +45,7 @@ exports.handler = function(event, context, callback){
   console.log("1"+JSON.stringify(event));
   console.log("1"+JSON.stringify(context));
   //console.log("1"+JSON.stringify(callback));
-
+  awsServerlessExpress.proxy(server, event, context)
 
   if(event.hasOwnProperty('result'))//session from APIAI Webhook Request JSON
   {
@@ -58,8 +58,22 @@ exports.handler = function(event, context, callback){
                   {
                     //Google
                              console.log("Source Google");
-                             awsServerlessExpress.proxy(server, event, context)
 
+                             if(event.result.action==="DiagnosisTriggerIntent.GenderInput"){
+                               apiAIGoogle.DiagnosisTrigger(event,context);
+                             }//fire Gender and Age Intent
+
+                             else if(event.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
+                               apiAIGoogle.SaySymptomTrigger(event,context);
+                             }//fire Symptom Process Chain Intent
+
+                             else if(event.result.action==="UniversalYesIntent"){
+                               apiAIGoogle.getYesResponse(event,context,callback);
+                             }//fire Symptom Process Chain Intent
+
+                             else if(event.result.action==="UniversalNoIntent"){
+                               apiAIGoogle.getNoResponse(event,context,callback);
+                             }//fire Symptom Process Chain Intent
 
                   }
                 }
