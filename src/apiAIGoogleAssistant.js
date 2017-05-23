@@ -6,6 +6,8 @@ process.env.DEBUG = 'actions-on-google:*';
 let ApiAiApp = require('actions-on-google').ApiAiApp;
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware.js')
 
+var request=require('request');
+
 const expressapp = express();
 
 expressapp.use(bodyParser.urlencoded({
@@ -100,7 +102,7 @@ function SaySymptomTrigger(req,res){
 
   SendToParse(function(parsingFirstBody){
 
-  console.log("Sending : "+global.parsedBody.mentions);
+  console.log("Recieved from Infermedica : "+global.parsedBody.mentions);
   if(global.parsedBody.mentions.length==0)
    {
 
