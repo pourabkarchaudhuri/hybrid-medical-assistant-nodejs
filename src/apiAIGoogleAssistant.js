@@ -8,7 +8,36 @@ const awsServerlessExpressMiddleware = require('aws-serverless-express/middlewar
 
 const expressapp = express();
 
+expressapp.use(bodyParser.urlencoded({
+   extended: true
+}));
 
+expressapp.use(bodyParser.json());
+expressapp.use(awsServerlessExpressMiddleware.eventContext())
+console.log("Entering Express File");
+//Dependencies
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+//===================================EXPRESS POST METHOD TO FIRE TRIGGERS======================
+expressapp.post('/', function(req, res) {
+
+console.log("POST");
+console.log(req.body.result.action);
+//ActionName
+    if(req.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
+      //Business Logic
+        DiagnosisTrigger(req,res)
+
+
+    }//fire Gender and Age Intent
+});
+//---------------------------------------------------------------------------------------------
+//=================================PORT LISTENER===============================================
+expressapp.listen((process.env.PORT || 8000), function() {
+    console.log("Server up and listening");
+});
+//--------------------------------------------------------------------------------------------
 const SELECTION_KEY_ONE = 'title';
 const SELECTION_KEY_GOOGLE_HOME = 'googleHome';
 const SELECTION_KEY_GOOGLE_PIXEL = 'googlePixel';
@@ -24,35 +53,56 @@ const IMG_URL_GOOGLE_PIXEL = 'https://storage.googleapis.com/madebygoog/v1' +
   '/Pixel/Pixel_ColorPicker/Pixel_Device_Angled_Black-720w.png';
 const IMG_URL_GOOGLE_ALLO = 'https://allo.google.com/images/allo-logo.png';
 
-expressapp.use(bodyParser.urlencoded({
-   extended: true
-}));
 
-expressapp.use(bodyParser.json());
-expressapp.use(awsServerlessExpressMiddleware.eventContext())
-console.log("Entering Express File");
+//=================================BUSINESS LOGIC CONTAINERS BASED ON EACH INTENT FIRED==============================================
+function DiagnosisTrigger(req,res){
 
-expressapp.post('/', function(req, res) {
+        global.useCaseFlag=1;
 
-console.log("POST");
-console.log(req.body.result.action);
+        console.log("Entering Diagnosis Trigger Google");
+        var ageValueNumber=req.body.result.parameters.ageValue.amount;
+        global.ageValueNumber=ageValueNumber;
+        console.log("Age : "+ageValueNumber);
+        var ageValueUnit=req.body.result.parameters.ageValue.amount;
+        //console.log("Age : "+ageValueUnit);
 
-const assistant = new ApiAiApp({request: req, response: res});
+        var genderValue=req.body.result.parameters.genderValue[0];
+        global.genderValue=genderValue;
+        console.log("Sex : "+global.genderValue);
 
+        var ResponseString="Cool, start by giving one symptom that you are facing. I will ask you some questions if I recognise the symptom. Answer the follow up questions with yes or no.";
+        const assistant = new ApiAiApp({request: req, response: res});
+        basicCardDiagnosisTrigger(assistant,ResponseString);
 
-carousel(assistant);
+        global.followUpCounter=0;
+        global.yesFlag=0;
 
-
-
-});
-
-
-
-expressapp.listen((process.env.PORT || 8000), function() {
-    console.log("Server up and listening");
-});
-
-
+        console.log("Exiting Diagnosis Trigger Google");
+}
+//===================================RESPONSE FUNCTIONS BASED ON EACH INTENT FIRED=================================================
+function basicCardDiagnosisTrigger (app,ResponseToSendBackInResponse) {
+  app.ask(app.buildRichResponse()
+    .addSimpleResponse(ResponseToSendBackInResponse)
+    .addSuggestions(
+      ['Basic Card', 'List', 'Carousel', 'Suggestions'])
+      // Create a basic card and add it to the rich response
+    .addBasicCard(app.buildBasicCard(`This is a basic card.  Text in a
+    basic card can include "quotes" and most other unicode characters
+    including emoji 📱.  Basic cards also support some markdown
+    formatting like *emphasis* or _italics_, **strong** or __bold__,
+    and ***bold itallic*** or ___strong emphasis___ as well as other things
+    like line  \nbreaks`) // Note the two spaces before '\n' required for a
+                          // line break to be rendered in the card
+      .setSubtitle('This is a subtitle')
+      .setTitle('Title: this is a title')
+      .addButton('This is a button', 'https://assistant.google.com/')
+      .setImage(IMG_URL_AOG, 'Image alternate text'))
+    .addSimpleResponse({ speech: 'This is the 2nd simple response ',
+      displayText: 'This is the 2nd simple response' })
+  );
+}
+//-----------------------------------------------------------------------------------------------------------------------------
+//======================================ACTIONS ON GOOGLE RESPONSE TEMPLATES===================================================
 
  function welcome (app) {
 
