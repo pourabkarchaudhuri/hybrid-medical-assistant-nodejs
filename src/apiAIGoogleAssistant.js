@@ -45,6 +45,9 @@ console.log(req.body.result.action);
 expressapp.listen((process.env.PORT || 8000), function() {
     console.log("Server up and listening");
 });
+
+
+
 //--------------------------------------------------------------------------------------------
 const SELECTION_KEY_ONE = 'title';
 const SELECTION_KEY_GOOGLE_HOME = 'googleHome';
@@ -131,7 +134,7 @@ function SaySymptomTrigger(req,res){
 //  context.succeed(facebookResponse);
   console.log("Ended Test");
 });
-
+console.log("Ended Function");
 }
 
 function getYesResponse(req,res){
@@ -166,7 +169,7 @@ function getNoResponse(req,res){
     }//END NO DIAGNOSIS
 //===================================BUSINESS LOGIC API CALLS AND CALLBACKS========================================================
 function SendToParse(callback){
-
+  console.log("POST Method for SendToParse Triggering");
   var options = { method: 'POST',
     url: 'https://api.infermedica.com/v2/parse',
     headers:
