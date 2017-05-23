@@ -83,22 +83,10 @@ function DiagnosisTrigger(req,res){
 function basicCardDiagnosisTrigger (app,ResponseToSendBackInResponse) {
   app.ask(app.buildRichResponse()
     .addSimpleResponse(ResponseToSendBackInResponse)
-    .addSuggestions(
-      ['Basic Card', 'List', 'Carousel', 'Suggestions'])
-      // Create a basic card and add it to the rich response
-    .addBasicCard(app.buildBasicCard(`This is a basic card.  Text in a
-    basic card can include "quotes" and most other unicode characters
-    including emoji 📱.  Basic cards also support some markdown
-    formatting like *emphasis* or _italics_, **strong** or __bold__,
-    and ***bold itallic*** or ___strong emphasis___ as well as other things
-    like line  \nbreaks`) // Note the two spaces before '\n' required for a
-                          // line break to be rendered in the card
-      .setSubtitle('This is a subtitle')
-      .setTitle('Title: this is a title')
-      .addButton('This is a button', 'https://assistant.google.com/')
-      .setImage(IMG_URL_AOG, 'Image alternate text'))
-    .addSimpleResponse({ speech: 'This is the 2nd simple response ',
-      displayText: 'This is the 2nd simple response' })
+    .addBasicCard(app.buildBasicCard(ResponseToSendBackInResponse) // Note the two spaces before '\n' required for a
+    .setSubtitle('This is a subtitle')
+    .setTitle('SYMPTOM DIAGNOSIS: Say a symptom')
+    .setImage(IMG_URL_AOG, 'Image alternate text'))
   );
 }
 //-----------------------------------------------------------------------------------------------------------------------------
