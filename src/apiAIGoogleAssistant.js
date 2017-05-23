@@ -6,7 +6,7 @@ process.env.DEBUG = 'actions-on-google:*';
 let ApiAiApp = require('actions-on-google').ApiAiApp;
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware.js')
 
-const app = express();
+const expressapp = express();
 
 
 const SELECTION_KEY_ONE = 'title';
@@ -24,32 +24,30 @@ const IMG_URL_GOOGLE_PIXEL = 'https://storage.googleapis.com/madebygoog/v1' +
   '/Pixel/Pixel_ColorPicker/Pixel_Device_Angled_Black-720w.png';
 const IMG_URL_GOOGLE_ALLO = 'https://allo.google.com/images/allo-logo.png';
 
-app.use(bodyParser.urlencoded({
+expressapp.use(bodyParser.urlencoded({
    extended: true
 }));
 
-app.use(bodyParser.json());
-app.use(awsServerlessExpressMiddleware.eventContext())
+expressapp.use(bodyParser.json());
+expressapp.use(awsServerlessExpressMiddleware.eventContext())
 
 
-app.post('/', function(req, res) {
+expressapp.post('/', function(req, res) {
+
+console.log("POST");
 const assistant = new ApiAiApp({request: req, response: res});
-
-
 welcome(assistant);
 });
 
 
 
-app.listen((process.env.PORT || 8000), function() {
+expressapp.listen((process.env.PORT || 8000), function() {
     console.log("Server up and listening");
 });
 
 
 
  function welcome (app) {
-
-
 
 
     app.ask(app.buildRichResponse()
