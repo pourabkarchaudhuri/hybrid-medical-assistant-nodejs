@@ -73,7 +73,7 @@ function DiagnosisTrigger(req,res){
         var ResponseString="Cool, start by giving one symptom that you are facing. I will ask you some questions if I recognise the symptom. Answer the follow up questions with yes or no.";
         const assistant = new ApiAiApp({request: req, response: res});
         basicCardDiagnosisTrigger(assistant,ResponseString);
-
+        //This Function Builds the Custom Response for this Intent
         global.followUpCounter=0;
         global.yesFlag=0;
 
@@ -86,7 +86,7 @@ function basicCardDiagnosisTrigger (app,ResponseToSendBackInResponse) {
     .setSubtitle('This is a subtitle')
     .setTitle('SYMPTOM DIAGNOSIS: Say a symptom')
     .setImage(IMG_URL_AOG, 'Image alternate text'))
-  );
+  );//BASIC CARD
 }
 //-----------------------------------------------------------------------------------------------------------------------------
 //======================================ACTIONS ON GOOGLE RESPONSE TEMPLATES===================================================
