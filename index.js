@@ -17,7 +17,7 @@ Android
 */
 ////
 //===================================================DEPENDENCIES DECLARATION=====================================================
-3
+
 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
