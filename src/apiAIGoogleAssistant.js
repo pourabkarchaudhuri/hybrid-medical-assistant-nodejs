@@ -35,6 +35,8 @@ console.log("Entering Express File");
 expressapp.post('/', function(req, res) {
 
 console.log("POST");
+console.log(req);
+console.log(res);
 const assistant = new ApiAiApp({request: req, response: res});
 
 
