@@ -36,10 +36,6 @@ app.post('/', function(req, res) {
 const assistant = new ApiAiApp({request: req, response: res});
 
 welcome(assistant);
-}
-
-
-
 });
 
 
