@@ -34,6 +34,7 @@ const requestPromise = require('request-promise');
 var request=require('request');
 const port = process.env.PORT || 3000;
 var apiAIGoogle=require('./src/apiAIGoogle');
+var apiAIFacebook=require('./src/apiAIFacebook');
 
 //dependencies.
 
@@ -48,32 +49,54 @@ exports.handler = function(event, context, callback){
   //console.log("1"+JSON.stringify(callback));
   awsServerlessExpress.proxy(server, event, context)
 
-  if(event.hasOwnProperty('result'))//session from APIAI Webhook Request JSON
+  if(event.body.hasOwnProperty('result'))//session from APIAI Webhook Request JSON
   {
 
             console.log("RequestFromAPI.AI");
             //Prepare API.AI Response
 
-            if(event.hasOwnProperty('originalRequest')){
-                  if(event.originalRequest.source==="google")
+            if(event.body.hasOwnProperty('originalRequest')){
+                  if(event.body.originalRequest.source==="google")
                   {
                     //Google
                              console.log("Source Google");
+                             //
+                            //  if(event.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
+                            //    apiAIGoogle.DiagnosisTrigger(event,context);
+                            //  }//fire Gender and Age Intent
+                             //
+                            //  else if(event.body.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
+                            //    apiAIGoogle.SaySymptomTrigger(event,context);
+                            //  }//fire Symptom Process Chain Intent
+                             // 
+                            //  else if(event.body.result.action==="UniversalYesIntent"){
+                            //    apiAIGoogle.getYesResponse(event,context,callback);
+                            //  }//fire Symptom Process Chain Intent
+                             //
+                            //  else if(event.body.result.action==="UniversalNoIntent"){
+                            //    apiAIGoogle.getNoResponse(event,context,callback);
+                            //  }//fire Symptom Process Chain Intent
 
-                             if(event.result.action==="DiagnosisTriggerIntent.GenderInput"){
-                               apiAIGoogle.DiagnosisTrigger(event,context);
+                  }
+                  else if(event.body.originalRequest.source==="facebook")
+                  {
+                    //Facebook
+                             console.log("Source Facebook");
+
+                             if(event.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
+                               apiAIFacebook.DiagnosisTrigger(event,context);
                              }//fire Gender and Age Intent
 
-                             else if(event.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
-                               apiAIGoogle.SaySymptomTrigger(event,context);
+                             else if(event.body.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
+                               apiAIFacebook.SaySymptomTrigger(event,context);
                              }//fire Symptom Process Chain Intent
 
-                             else if(event.result.action==="UniversalYesIntent"){
-                               apiAIGoogle.getYesResponse(event,context,callback);
+                             else if(event.body.result.action==="UniversalYesIntent"){
+                               apiAIFacebook.getYesResponse(event,context,callback);
                              }//fire Symptom Process Chain Intent
 
-                             else if(event.result.action==="UniversalNoIntent"){
-                               apiAIGoogle.getNoResponse(event,context,callback);
+                             else if(event.body.result.action==="UniversalNoIntent"){
+                               apiAIFacebook.getNoResponse(event,context,callback);
                              }//fire Symptom Process Chain Intent
 
                   }
