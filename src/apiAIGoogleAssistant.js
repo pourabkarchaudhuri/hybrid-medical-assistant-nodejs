@@ -30,7 +30,7 @@ console.log(req.body.originalRequest.source);
 console.log(req.body.result.action);
 //ActionName
 
-      console.log("Google Triggers");
+      console.log("Action Triggers");
       if(req.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
         //Business Logic
           DiagnosisTrigger(req,res);
