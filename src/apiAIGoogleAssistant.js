@@ -363,37 +363,28 @@ function processSymptom(req,res){
                          console.log("Response FollowUp Trigger for Google Family");
                          basicCardFollowUpQuestion(assistant,ResponseToSendBackInResponse);
                      }
+
                      else if(req.body.originalRequest.source==='facebook'){
                        console.log("Response FollowUp Trigger for Facebook Messenger");
                        var facebookResponse={
                            "speech": "",
                            "displayText": "",
                            "data": {
-                             "facebook": {
-                               "attachment": {
-                                     "type": "template",
-                                     "payload": {
-                                     "template_type": "generic",
-                                     "elements": [
-                                       {
-                                         "title": "Follow Up Question : ",
-                                         "subtitle": ResponseToSendBackInResponse,
-                                         "buttons": [
-                                           {
-                                             "type": "postback",
-                                             "title": "Yes",
-                                             "payload": "yes"
-                                           },
-                                           {
-                                             "type": "postback",
-                                             "title": "No",
-                                             "payload": "no"
-                                           }
-                                         ]
-                                       }
-                                     ]
-                                   }
-                                 }
+                               "facebook": {
+                                  "text": ResponseToSendBackInResponse,
+                                  "quick_replies": [
+                                    {
+                                      "content_type": "text",
+                                      "title": "Yes",
+                                      "payload": "yes"
+                                    },
+                                    {
+                                      "content_type": "text",
+                                      "title": "No",
+                                      "payload": "no"
+                                    }
+                                  ]
+                                }
                                }
                              },
                            "contextOut": [],
@@ -463,8 +454,8 @@ function processSymptom(req,res){
     console.log("New Group Id to Push : "+global.followUpSymptomId);
     global.groupIndex++;
 
-    var ResponseToSendBackInResponse=groupText+". Would you say "+firstInitiateGroupFollowUpName;
-    var ResponseToSendBackInResponseFacebook="Would you say "+firstInitiateGroupFollowUpName+"?";
+    var ResponseToSendBackInResponse=groupText+". Would you say "+firstInitiateGroupFollowUpName+"?";
+
     //Speak Out var groupText; That is the question : "How bad is the pain? Is it + "SEVERE"? "
     const assistant = new ApiAiApp({request: req, response: res});
 
@@ -479,31 +470,21 @@ function processSymptom(req,res){
           "speech": "",
           "displayText": "",
           "data": {
-            "facebook": {
-              "attachment": {
-                    "type": "template",
-                    "payload": {
-                    "template_type": "generic",
-                    "elements": [
-                      {
-                        "title": "Follow Up Question : ",
-                        "subtitle": ResponseToSendBackInResponseFacebook,
-                        "buttons": [
-                          {
-                            "type": "postback",
-                            "title": "Yes",
-                            "payload": "yes"
-                          },
-                          {
-                            "type": "postback",
-                            "title": "No",
-                            "payload": "no"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
+              "facebook": {
+                 "text": ResponseToSendBackInResponse,
+                 "quick_replies": [
+                   {
+                     "content_type": "text",
+                     "title": "Yes",
+                     "payload": "yes"
+                   },
+                   {
+                     "content_type": "text",
+                     "title": "No",
+                     "payload": "no"
+                   }
+                 ]
+               }
               }
             },
           "contextOut": [],
