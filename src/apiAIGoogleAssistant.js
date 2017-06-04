@@ -356,8 +356,52 @@ function processSymptom(req,res){
                      console.log("New Single Id to Push : "+global.followUpSymptomId);
                      console.log("Follow Up Question Symptom Lookup Name : "+global.diagnosisBody.question.items[0].name);
                      var ResponseToSendBackInResponse=followUpQuestion;
+                     
+
                      const assistant = new ApiAiApp({request: req, response: res});
-                     basicCardFollowUpQuestion(assistant,ResponseToSendBackInResponse);
+                     if(req.body.originalRequest.source==='google'){
+                         console.log("Response FollowUp Trigger for Google Family");
+                         basicCardFollowUpQuestion(assistant,ResponseToSendBackInResponse);
+                     }
+                     else if(req.body.originalRequest.source==='facebook'){
+                       console.log("Response FollowUp Trigger for Facebook Messenger");
+                       var facebookResponse={
+                           "speech": "",
+                           "displayText": "",
+                           "data": {
+                             "facebook": {
+                               "attachment": {
+                                     "type": "template",
+                                     "payload": {
+                                     "template_type": "generic",
+                                     "elements": [
+                                       {
+                                         "title": "Follow Up Question : ",
+                                         "subtitle": ResponseToSendBackInResponse,
+                                         "buttons": [
+                                           {
+                                             "type": "postback",
+                                             "title": "Yes",
+                                             "payload": "yes"
+                                           },
+                                           {
+                                             "type": "postback",
+                                             "title": "No",
+                                             "payload": "no"
+                                           }
+                                         ]
+                                       }
+                                     ]
+                                   }
+                                 }
+                               }
+                             },
+                           "contextOut": [],
+                           "source": "DuckDuckGo"
+                         };
+                      res.send(facebookResponse);
+                     }
+
                      //':ask' mode
 
                      global.followUpCounter=1;
