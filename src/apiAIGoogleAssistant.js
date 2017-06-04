@@ -356,7 +356,7 @@ function processSymptom(req,res){
                      console.log("New Single Id to Push : "+global.followUpSymptomId);
                      console.log("Follow Up Question Symptom Lookup Name : "+global.diagnosisBody.question.items[0].name);
                      var ResponseToSendBackInResponse=followUpQuestion;
-                     
+
 
                      const assistant = new ApiAiApp({request: req, response: res});
                      if(req.body.originalRequest.source==='google'){
@@ -516,7 +516,7 @@ function processSymptom(req,res){
       global.useCaseFlag=0;
     });
   }
-
+//
 //---------------------------------------------------------------------------------------------------------------------------------
 //===================================RESPONSE FUNCTIONS BASED ON EACH INTENT FIRED=================================================
 function basicCardDiagnosisTrigger (app,ResponseToSendBackInResponse) {
