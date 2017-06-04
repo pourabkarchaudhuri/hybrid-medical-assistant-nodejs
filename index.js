@@ -44,7 +44,7 @@ var apiAIFacebook=require('./src/apiAIFacebook');
 exports.handler = function(event, context, callback){
 
   console.log("1"+JSON.stringify(event));
-  console.log("2"+JSON.stringify(event.body.originalRequest);
+  console.log("2"+JSON.stringify(event.body.originalRequest));
   console.log("1"+JSON.stringify(context));
   //console.log("1"+JSON.stringify(callback));
   awsServerlessExpress.proxy(server, event, context)
