@@ -49,17 +49,17 @@ exports.handler = function(event, context, callback){
   //console.log("1"+JSON.stringify(callback));
   awsServerlessExpress.proxy(server, event, context)
 
-  if(event.body.hasOwnProperty('result'))//session from APIAI Webhook Request JSON
+  if(event.body.originalRequest.source==='facebook')//session from APIAI Webhook Request JSON
   {
 
-            console.log("RequestFromAPI.AI");
+            console.log("RequestFromAPI.AI Facebook");
             //Prepare API.AI Response
 
-            if(event.body.hasOwnProperty('originalRequest')){
-                  if(event.body.originalRequest.source==="google")
-                  {
-                    //Google
-                             console.log("Source Google");
+            // if(event.body.hasOwnProperty('originalRequest')){
+            //       if(event.body.originalRequest.source==="google")
+            //       {
+            //         //Google
+            //                  console.log("Source Google");
                              //
                             //  if(event.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
                             //    apiAIGoogle.DiagnosisTrigger(event,context);
@@ -68,7 +68,7 @@ exports.handler = function(event, context, callback){
                             //  else if(event.body.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
                             //    apiAIGoogle.SaySymptomTrigger(event,context);
                             //  }//fire Symptom Process Chain Intent
-                             // 
+                             //
                             //  else if(event.body.result.action==="UniversalYesIntent"){
                             //    apiAIGoogle.getYesResponse(event,context,callback);
                             //  }//fire Symptom Process Chain Intent
@@ -77,9 +77,9 @@ exports.handler = function(event, context, callback){
                             //    apiAIGoogle.getNoResponse(event,context,callback);
                             //  }//fire Symptom Process Chain Intent
 
-                  }
-                  else if(event.body.originalRequest.source==="facebook")
-                  {
+                  // }
+                  // else if(event.body.originalRequest.source==="facebook")
+                  // {
                     //Facebook
                              console.log("Source Facebook");
 
@@ -100,7 +100,7 @@ exports.handler = function(event, context, callback){
                              }//fire Symptom Process Chain Intent
 
                   }
-                }
+                // }
                 else{
                       //otherSources like iOS, HTML Direct and Android
                               console.log("Other Sources");
