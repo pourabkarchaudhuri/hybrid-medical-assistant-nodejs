@@ -385,8 +385,7 @@ function processSymptom(req,res){
                                     }
                                   ]
                                 }
-                               }
-                             },
+                               },
                            "contextOut": [],
                            "source": "DuckDuckGo"
                          };
