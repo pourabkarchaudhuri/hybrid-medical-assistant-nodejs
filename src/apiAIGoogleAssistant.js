@@ -466,9 +466,50 @@ function processSymptom(req,res){
     var ResponseToSendBackInResponse=groupText+". Would you say "+firstInitiateGroupFollowUpName;
     //Speak Out var groupText; That is the question : "How bad is the pain? Is it + "SEVERE"? "
     const assistant = new ApiAiApp({request: req, response: res});
-    basicCardGroupTypeFollowUpQuestion(assistant,ResponseToSendBackInResponse);
 
 
+    if(req.body.originalRequest.source==='google'){
+        console.log("Response FollowUp Group Type Trigger for Google Family");
+        basicCardGroupTypeFollowUpQuestion(assistant,ResponseToSendBackInResponse);
+    }
+    else if(req.body.originalRequest.source==='facebook'){
+      console.log("Response FollowUp Group Type Trigger for Facebook Messenger");
+      var facebookResponse={
+          "speech": "",
+          "displayText": "",
+          "data": {
+            "facebook": {
+              "attachment": {
+                    "type": "template",
+                    "payload": {
+                    "template_type": "generic",
+                    "elements": [
+                      {
+                        "title": "Follow Up Question : ",
+                        "subtitle": ResponseToSendBackInResponse,
+                        "buttons": [
+                          {
+                            "type": "postback",
+                            "title": "Yes",
+                            "payload": "yes"
+                          },
+                          {
+                            "type": "postback",
+                            "title": "No",
+                            "payload": "no"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+          "contextOut": [],
+          "source": "DuckDuckGo"
+        };
+     res.send(facebookResponse);
+    }
     global.followUpCounter=1;
     global.yesFlag=0;
 
