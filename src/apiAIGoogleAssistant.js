@@ -464,6 +464,7 @@ function processSymptom(req,res){
     global.groupIndex++;
 
     var ResponseToSendBackInResponse=groupText+". Would you say "+firstInitiateGroupFollowUpName;
+    var ResponseToSendBackInResponseFacebook="Would you say "+firstInitiateGroupFollowUpName+"?";
     //Speak Out var groupText; That is the question : "How bad is the pain? Is it + "SEVERE"? "
     const assistant = new ApiAiApp({request: req, response: res});
 
@@ -486,7 +487,7 @@ function processSymptom(req,res){
                     "elements": [
                       {
                         "title": "Follow Up Question : ",
-                        "subtitle": ResponseToSendBackInResponse,
+                        "subtitle": ResponseToSendBackInResponseFacebook,
                         "buttons": [
                           {
                             "type": "postback",
