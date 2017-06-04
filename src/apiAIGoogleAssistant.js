@@ -544,34 +544,11 @@ function processSymptom(req,res){
       else if(req.body.originalRequest.source==='facebook'){
         console.log("Response Final Trigger for Facebook Messenger");
         var facebookResponse={
-            "speech": "",
-            "displayText": "",
-            "data": {
-              "facebook": {
-                "attachment": {
-                      "type": "template",
-                      "payload": {
-                      "template_type": "generic",
-                      "elements": [
-                        {
-                          "title": "Final Diagnosis",
-                          "subtitle": ResponseToSendBackInResponse,
-                          "buttons": [
-                            {
-                              "type": "postback",
-                              "title": "More",
-                              "payload": "hi"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                }
-              },
-            "contextOut": [],
-            "source": "DuckDuckGo"
-          };
+                          "speech": ResponseToSendBackInResponse,
+                          "displayText": ResponseToSendBackInResponse,
+                          "contextOut": [],
+                          "source": "DuckDuckGo"
+                        };
        res.send(facebookResponse);
      }
 
