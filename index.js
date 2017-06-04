@@ -106,7 +106,7 @@ exports.handler = function(event, context, callback){
                               console.log("Other Sources");
 
                 }
-}//FOR API.AI CONTEXTS
+//FOR API.AI CONTEXTS
 else
   {
       console.log("Unknown Source");
