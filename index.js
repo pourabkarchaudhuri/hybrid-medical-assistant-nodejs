@@ -101,11 +101,11 @@ exports.handler = function(event, context, callback){
 
                   }
                 // }
-                else{
-                      //otherSources like iOS, HTML Direct and Android
-                              console.log("Other Sources");
-
-                }
+                // else{
+                //       //otherSources like iOS, HTML Direct and Android
+                //               console.log("Other Sources");
+                //
+                // }
 //FOR API.AI CONTEXTS
 else
   {
