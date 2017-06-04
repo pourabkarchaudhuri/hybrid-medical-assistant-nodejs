@@ -20,6 +20,7 @@ console.log("Entering Express File");
 //Dependencies
 
 //---------------------------------------------------------------------------------------------
+//
 //---------------------------------------------------------------------------------------------
 //===================================EXPRESS POST METHOD TO FIRE TRIGGERS======================
 expressapp.post('/', function(req, res) {
@@ -28,33 +29,7 @@ console.log("POST");
 console.log(req.body.originalRequest.source);
 console.log(req.body.result.action);
 //ActionName
-if(req.body.originalRequest.source==='facebook'){
-    // if(req.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
-    //   //Business Logic
-    //     DiagnosisTrigger(req,res);
-    //   }//fire Gender and Age Intent
-    //   else if(req.body.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
-    //     SaySymptomTrigger(req,res);
-    //   }//fire Symptom Process Chain Intent
-    //   else if(req.body.result.action==="UniversalYesIntent"){
-    //     getYesResponse(req,res);
-    //   }//fire Symptom Process Chain Intent
-    //
-    //   else if(req.body.result.action==="UniversalNoIntent"){
-    //     getNoResponse(req,res);
-    //   }//fire Symptom Process Chain Intent
-    console.log("FB Triggers");
-    console.log(res);
-    var ResponseString="FB Working with Context.Succeed";
-    var facebookResponse={
-                      "speech": ResponseString,
-                      "displayText": ResponseString,
-                      "contextOut": [],
-                      "source": "DuckDuckGo"
-                    };
-    res.send(facebookResponse);
-    }
-    else if(req.body.originalRequest.source==='google'){
+
       console.log("Google Triggers");
       if(req.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
         //Business Logic
@@ -70,7 +45,7 @@ if(req.body.originalRequest.source==='facebook'){
         else if(req.body.result.action==="UniversalNoIntent"){
           getNoResponse(req,res);
         }//fire Symptom Process Chain Intent
-    }
+
 });
 //---------------------------------------------------------------------------------------------
 //=================================PORT LISTENER===============================================
@@ -115,7 +90,20 @@ function DiagnosisTrigger(req,res){
 
         var ResponseString="Cool, start by giving one symptom that you are facing. I will ask you some questions if I recognise the symptom. Answer the follow up questions with yes or no.";
         const assistant = new ApiAiApp({request: req, response: res});
-        basicCardDiagnosisTrigger(assistant,ResponseString);
+        if(req.body.originalRequest.source==='google'){
+            basicCardDiagnosisTrigger(assistant,ResponseString);
+        }
+        else if(req.body.originalRequest.source==='facebook'){
+          console.log("FB Triggers");
+           var facebookResponse={
+                             "speech": ResponseString,
+                             "displayText": ResponseString,
+                             "contextOut": [],
+                             "source": "DuckDuckGo"
+                           };
+           res.send(facebookResponse);
+        }
+
         //This Function Builds the Custom Response for this Intent
         global.followUpCounter=0;
         global.yesFlag=0;
