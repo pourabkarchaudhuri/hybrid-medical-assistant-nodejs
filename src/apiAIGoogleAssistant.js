@@ -91,10 +91,11 @@ function DiagnosisTrigger(req,res){
         var ResponseString="Cool, start by giving one symptom that you are facing. I will ask you some questions if I recognise the symptom. Answer the follow up questions with yes or no.";
         const assistant = new ApiAiApp({request: req, response: res});
         if(req.body.originalRequest.source==='google'){
+            console.log("Response Diagnosis Trigger for Google Family");
             basicCardDiagnosisTrigger(assistant,ResponseString);
         }
         else if(req.body.originalRequest.source==='facebook'){
-          console.log("FB Triggers");
+          console.log("Response Diagnosis Trigger for Facebook Messenger");
            var facebookResponse={
                              "speech": ResponseString,
                              "displayText": ResponseString,
