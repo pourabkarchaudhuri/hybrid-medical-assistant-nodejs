@@ -52,7 +52,7 @@ if(req.body.originalRequest.source==='facebook'){
                       "contextOut": [],
                       "source": "DuckDuckGo"
                     };
-    context.succeed(facebookResponse);
+    res.apiGateway.context.succeed(facebookResponse);
     }
     else if(req.body.originalRequest.source==='google'){
       console.log("Google Triggers");
