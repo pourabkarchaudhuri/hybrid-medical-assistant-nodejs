@@ -512,8 +512,48 @@ function processSymptom(req,res){
       var ResponseToSendBackInResponse="Based on the symptoms you have given, there is a chance that you may have "+global.finalDiseaseName+". That\'s just what I can figure out. "+conditionAdviceResult;
       //Speak Out var groupText; That is the question : "How bad is the pain? Is it + "SEVERE"? "
       const assistant = new ApiAiApp({request: req, response: res});
-      basicCardFinalDiagnosis(assistant,ResponseToSendBackInResponse);
+
+
+      if(req.body.originalRequest.source==='google'){
+          console.log("Response Final Trigger for Google Family");
+          basicCardFinalDiagnosis(assistant,ResponseToSendBackInResponse);
+      }
+      else if(req.body.originalRequest.source==='facebook'){
+        console.log("Response Final Trigger for Facebook Messenger");
+        var facebookResponse={
+            "speech": "",
+            "displayText": "",
+            "data": {
+              "facebook": {
+                "attachment": {
+                      "type": "template",
+                      "payload": {
+                      "template_type": "generic",
+                      "elements": [
+                        {
+                          "title": "Final Diagnosis",
+                          "subtitle": ResponseToSendBackInResponse,
+                          "buttons": [
+                            {
+                              "type": "postback",
+                              "title": "More",
+                              "payload": "hi"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+            "contextOut": [],
+            "source": "DuckDuckGo"
+          };
+       res.send(facebookResponse);
+     }
+
       global.useCaseFlag=0;
+
     });
   }
 //
