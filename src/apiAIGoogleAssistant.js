@@ -28,20 +28,40 @@ console.log("POST");
 console.log(req.body.originalRequest.source);
 console.log(req.body.result.action);
 //ActionName
-    if(req.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
-      //Business Logic
-        DiagnosisTrigger(req,res);
-      }//fire Gender and Age Intent
-      else if(req.body.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
-        SaySymptomTrigger(req,res);
-      }//fire Symptom Process Chain Intent
-      else if(req.body.result.action==="UniversalYesIntent"){
-        getYesResponse(req,res);
-      }//fire Symptom Process Chain Intent
+if(req.body.originalRequest.source==='facebook'){
+    // if(req.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
+    //   //Business Logic
+    //     DiagnosisTrigger(req,res);
+    //   }//fire Gender and Age Intent
+    //   else if(req.body.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
+    //     SaySymptomTrigger(req,res);
+    //   }//fire Symptom Process Chain Intent
+    //   else if(req.body.result.action==="UniversalYesIntent"){
+    //     getYesResponse(req,res);
+    //   }//fire Symptom Process Chain Intent
+    //
+    //   else if(req.body.result.action==="UniversalNoIntent"){
+    //     getNoResponse(req,res);
+    //   }//fire Symptom Process Chain Intent
+    console.log("FB Triggers");
+    }
+    else if(req.body.originalRequest.source==='google'){
+      console.log("Google Triggers");
+      if(req.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
+        //Business Logic
+          DiagnosisTrigger(req,res);
+        }//fire Gender and Age Intent
+        else if(req.body.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
+          SaySymptomTrigger(req,res);
+        }//fire Symptom Process Chain Intent
+        else if(req.body.result.action==="UniversalYesIntent"){
+          getYesResponse(req,res);
+        }//fire Symptom Process Chain Intent
 
-      else if(req.body.result.action==="UniversalNoIntent"){
-        getNoResponse(req,res);
-      }//fire Symptom Process Chain Intent
+        else if(req.body.result.action==="UniversalNoIntent"){
+          getNoResponse(req,res);
+        }//fire Symptom Process Chain Intent
+    }
 });
 //---------------------------------------------------------------------------------------------
 //=================================PORT LISTENER===============================================
