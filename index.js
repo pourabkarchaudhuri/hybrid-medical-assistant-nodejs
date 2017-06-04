@@ -34,7 +34,6 @@ const requestPromise = require('request-promise');
 var request=require('request');
 const port = process.env.PORT || 3000;
 var apiAIGoogle=require('./src/apiAIGoogle');
-var apiAIFacebook=require('./src/apiAIFacebook');
 
 //dependencies.
 
@@ -44,69 +43,47 @@ var apiAIFacebook=require('./src/apiAIFacebook');
 exports.handler = function(event, context, callback){
 
   console.log("1"+JSON.stringify(event));
-  console.log("2"+JSON.stringify(event.body.originalRequest));
+  console.log("2"+JSON.stringify(event.body));
   console.log("1"+JSON.stringify(context));
   //console.log("1"+JSON.stringify(callback));
   awsServerlessExpress.proxy(server, event, context)
 
-  if(event.body.originalRequest.source==='facebook')//session from APIAI Webhook Request JSON
+  if(event.hasOwnProperty('result'))//session from APIAI Webhook Request JSON
   {
 
-            console.log("RequestFromAPI.AI Facebook");
+            console.log("RequestFromAPI.AI");
             //Prepare API.AI Response
 
-            // if(event.body.hasOwnProperty('originalRequest')){
-            //       if(event.body.originalRequest.source==="google")
-            //       {
-            //         //Google
-            //                  console.log("Source Google");
-                             //
-                            //  if(event.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
-                            //    apiAIGoogle.DiagnosisTrigger(event,context);
-                            //  }//fire Gender and Age Intent
-                             //
-                            //  else if(event.body.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
-                            //    apiAIGoogle.SaySymptomTrigger(event,context);
-                            //  }//fire Symptom Process Chain Intent
-                             //
-                            //  else if(event.body.result.action==="UniversalYesIntent"){
-                            //    apiAIGoogle.getYesResponse(event,context,callback);
-                            //  }//fire Symptom Process Chain Intent
-                             //
-                            //  else if(event.body.result.action==="UniversalNoIntent"){
-                            //    apiAIGoogle.getNoResponse(event,context,callback);
-                            //  }//fire Symptom Process Chain Intent
+            if(event.hasOwnProperty('originalRequest')){
+                  if(event.originalRequest.source==="google")
+                  {
+                    //Google
+                             console.log("Source Google");
 
-                  // }
-                  // else if(event.body.originalRequest.source==="facebook")
-                  // {
-                    //Facebook
-                             console.log("Source Facebook");
-
-                             if(event.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
-                               apiAIFacebook.DiagnosisTrigger(event,context);
+                             if(event.result.action==="DiagnosisTriggerIntent.GenderInput"){
+                               apiAIGoogle.DiagnosisTrigger(event,context);
                              }//fire Gender and Age Intent
 
-                             else if(event.body.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
-                               apiAIFacebook.SaySymptomTrigger(event,context);
+                             else if(event.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
+                               apiAIGoogle.SaySymptomTrigger(event,context);
                              }//fire Symptom Process Chain Intent
 
-                             else if(event.body.result.action==="UniversalYesIntent"){
-                               apiAIFacebook.getYesResponse(event,context,callback);
+                             else if(event.result.action==="UniversalYesIntent"){
+                               apiAIGoogle.getYesResponse(event,context,callback);
                              }//fire Symptom Process Chain Intent
 
-                             else if(event.body.result.action==="UniversalNoIntent"){
-                               apiAIFacebook.getNoResponse(event,context,callback);
+                             else if(event.result.action==="UniversalNoIntent"){
+                               apiAIGoogle.getNoResponse(event,context,callback);
                              }//fire Symptom Process Chain Intent
 
                   }
-                // }
-                // else{
-                //       //otherSources like iOS, HTML Direct and Android
-                //               console.log("Other Sources");
-                //
-                // }
-//FOR API.AI CONTEXTS
+                }
+                else{
+                      //otherSources like iOS, HTML Direct and Android
+                              console.log("Other Sources");
+
+                }
+}//FOR API.AI CONTEXTS
 else
   {
       console.log("Unknown Source");

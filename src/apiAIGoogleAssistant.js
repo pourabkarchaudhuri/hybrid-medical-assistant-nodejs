@@ -25,6 +25,7 @@ console.log("Entering Express File");
 expressapp.post('/', function(req, res) {
 
 console.log("POST");
+console.log(req.body.originalRequest.source);
 console.log(req.body.result.action);
 //ActionName
     if(req.body.result.action==="DiagnosisTriggerIntent.GenderInput"){
