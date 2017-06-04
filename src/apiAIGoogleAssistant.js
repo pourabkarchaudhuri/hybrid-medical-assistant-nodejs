@@ -44,6 +44,8 @@ if(req.body.originalRequest.source==='facebook'){
     //     getNoResponse(req,res);
     //   }//fire Symptom Process Chain Intent
     console.log("FB Triggers");
+    var facebookResponse="FB Working with Context.Succeed";
+    context.succed(facebookResponse);
     }
     else if(req.body.originalRequest.source==='google'){
       console.log("Google Triggers");
