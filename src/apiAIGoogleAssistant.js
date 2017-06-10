@@ -137,8 +137,8 @@ function SaySymptomTrigger(req,res){
      else if(req.body.originalRequest.source==='facebook'){
 
         var facebookResponse={
-                          "speech": ResponseString,
-                          "displayText": ResponseString,
+                          "speech": ResponseToSendBackInResponse,
+                          "displayText": ResponseToSendBackInResponse,
                           "contextOut": [],
                           "source": "DuckDuckGo"
                         };
