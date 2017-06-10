@@ -127,10 +127,23 @@ function SaySymptomTrigger(req,res){
 
      console.log("NLP DID NOT RETURN SYMPTOM ID");
      console.log(global.parsedBody);
-     var ResponseToSendBackInResponse="I didn\'t get that. Try rephrasing that symptom. Give me one symptom at a time.";
-     const assistant = new ApiAiApp({request: req, response: res});
-     SimpleResponseFallbackInBadSymptom(assistant,ResponseToSendBackInResponse);
+     var ResponseToSendBackInResponse="I didn\'t get that. Try rephrasing that symptom. Give me one symptom at a time. Something like : 'I have a severe headache'";
 
+
+     if(req.body.originalRequest.source==='google'){
+       const assistant = new ApiAiApp({request: req, response: res});
+       SimpleResponseFallbackInBadSymptom(assistant,ResponseToSendBackInResponse);
+     }
+     else if(req.body.originalRequest.source==='facebook'){
+
+        var facebookResponse={
+                          "speech": ResponseString,
+                          "displayText": ResponseString,
+                          "contextOut": [],
+                          "source": "DuckDuckGo"
+                        };
+        res.send(facebookResponse);
+     }
 
    }
    else
@@ -484,7 +497,7 @@ function processSymptom(req,res){
                    }
                  ]
                }
-              
+
             },
           "contextOut": [],
           "source": "DuckDuckGo"
