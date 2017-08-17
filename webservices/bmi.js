@@ -1,5 +1,6 @@
 module.exports=function bmiCalc(height,heightUnit,weight,weightUnit,age,waist,gender,callback){
 // function bmiCalc(height,heightUnit,weight,weightUnit,age,waist,gender,callback){
+    console.log("about to make get call to bmi api");
     var request = require("request");
 
     var options = { 
@@ -23,7 +24,7 @@ module.exports=function bmiCalc(height,heightUnit,weight,weightUnit,age,waist,ge
     request(options, function (error, response, body) {
     if (error) throw new Error(error);
 
-    // console.log(body);
+    console.log(body);
     console.log("inside webservices",body.bmi.status,body.ideal_weight,body.bmi.risk);
     callback(body.bmi.status,body.ideal_weight,body.bmi.risk);
     });
