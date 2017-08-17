@@ -180,7 +180,7 @@ function calcFitness(req,res){
   console.log(req.body.result.parameters.unit_length.unit,req.body.result.parameters.unit_waist,req.body.result.parameters.unit_weight.amount);
   console.log(req.body.result.parameters.unit_weight.unit);
   
-  let height = req.body.result.parameters.unit_length.amount.toString();
+  let height = req.body.result.parameters.unit_length.amount;
   let heightUnit = req.body.result.parameters.unit_length.unit.toString();
   let weight = req.body.result.parameters.unit_weight.amount.toString();
   let weightUnit = req.body.result.parameters.unit_weight.unit.toString();
@@ -194,7 +194,8 @@ function calcFitness(req,res){
   }
   
   if(heightUnit==="inch"){
-    height=height*0.0833333;
+    height=height*2.54;
+    height=height.toString();
     heightUnit="cm";
   }
   
