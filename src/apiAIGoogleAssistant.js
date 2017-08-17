@@ -198,6 +198,11 @@ function calcFitness(req,res){
     height=height.toString();
     heightUnit="cm";
   }
+  else if(heightUnit==="ft"){
+    height=height*12*2.54;
+    height=height.toString();
+    heightUnit="cm";
+  }
   
   bmiCalc(height,heightUnit,weight,weightUnit,age,waist,gender,function(status,ideal_weight,risk,err){
     if(err != null){
