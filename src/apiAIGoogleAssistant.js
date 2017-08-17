@@ -542,9 +542,8 @@ function processSymptom(req,res){
 //===================================RESPONSE FUNCTIONS BASED ON EACH INTENT FIRED=================================================
 function basicCardBMITrigger (app,ResponseToSendBackInResponse) {
   app.ask(app.buildRichResponse()
-    .addSimpleResponse({speech: ResponseToSendBackInResponse, displayText: ''})
     .addBasicCard(app.buildBasicCard(ResponseToSendBackInResponse)
-    .setSubtitle('Follow Up Question')
+    .setSubtitle('These are your results:')
     .setTitle('BMI Calculator')
     .setImage(IMG_URL_AOG, 'Image alternate text'))
   );//BASIC CARD
