@@ -33,7 +33,7 @@ const async = require('async');
 const requestPromise = require('request-promise');
 var request=require('request');
 const port = process.env.PORT || 3000;
-var apiAIGoogle=require('./src/apiAIGoogle');
+
 
 //dependencies.
 
@@ -48,47 +48,6 @@ exports.handler = function(event, context, callback){
   //console.log("1"+JSON.stringify(callback));
   awsServerlessExpress.proxy(server, event, context)
 
-  if(event.hasOwnProperty('result'))//session from APIAI Webhook Request JSON
-  {
-
-            console.log("RequestFromAPI.AI");
-            //Prepare API.AI Response
-
-            if(event.hasOwnProperty('originalRequest')){
-                  if(event.originalRequest.source==="google")
-                  {
-                    //Google
-                             console.log("Source Google");
-
-                             if(event.result.action==="DiagnosisTriggerIntent.GenderInput"){
-                               apiAIGoogle.DiagnosisTrigger(event,context);
-                             }//fire Gender and Age Intent
-
-                             else if(event.result.action==="DiagnosisTriggerIntent.GenderInput.FirstSymptom"){
-                               apiAIGoogle.SaySymptomTrigger(event,context);
-                             }//fire Symptom Process Chain Intent
-
-                             else if(event.result.action==="UniversalYesIntent"){
-                               apiAIGoogle.getYesResponse(event,context,callback);
-                             }//fire Symptom Process Chain Intent
-
-                             else if(event.result.action==="UniversalNoIntent"){
-                               apiAIGoogle.getNoResponse(event,context,callback);
-                             }//fire Symptom Process Chain Intent
-
-                  }
-                }
-                else{
-                      //otherSources like iOS, HTML Direct and Android
-                              console.log("Other Sources");
-
-                }
-}//FOR API.AI CONTEXTS
-else
-  {
-      console.log("Unknown Source");
-  }//FOR UNKNOWN SOURCES
-};//
 
 //===============================================ALEXA SKILL INTENT CONTAINER================================================
 //ALEXA SKILLS CONTAINER
