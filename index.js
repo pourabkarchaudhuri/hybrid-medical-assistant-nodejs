@@ -47,6 +47,7 @@ exports.handler = function(event, context, callback){
   console.log("1"+JSON.stringify(context));
   //console.log("1"+JSON.stringify(callback));
   awsServerlessExpress.proxy(server, event, context)
+}
 
 
 //===============================================ALEXA SKILL INTENT CONTAINER================================================
