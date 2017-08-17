@@ -23,7 +23,7 @@ module.exports=function bmiCalc(height,heightUnit,weight,weightUnit,age,waist,ge
     console.log("Options : "+JSON.stringify(options));
     request(options, function (error, response, body) {
     if (error) throw new Error(error);
-    console.log("API response : "+JSON.stringify(body));
+    console.log("API response : ",body);
 
     if(body.hasOwnProperty('error')){
         callback(null,null,null,503);
