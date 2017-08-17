@@ -24,13 +24,18 @@ module.exports=function bmiCalc(height,heightUnit,weight,weightUnit,age,waist,ge
     request(options, function (error, response, body) {
     if (error) throw new Error(error);
 
+    if(body.hasOwnProperty('error')){
+        callback(null,null,null,503);
+    }else{
+
     console.log(body);
     console.log("inside webservices",body.bmi.status,body.ideal_weight,body.bmi.risk);
-    callback(body.bmi.status,body.ideal_weight,body.bmi.risk);
+    callback(body.bmi.status,body.ideal_weight,body.bmi.risk,null);
+     }
     });
-
+    
 }
 
-// bmiCalc("170.00","cm","85.00","kg","23","34.00","m",function(status,range,risk){
-//     console.log(status,range,risk);
-// });
+bmiCalc("170.00","cm","85.00","kg","23","34.00","m",function(status,range,risk){
+    console.log(status,range,risk);
+});

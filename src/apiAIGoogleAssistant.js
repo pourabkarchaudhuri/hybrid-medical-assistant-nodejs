@@ -187,12 +187,24 @@ function calcFitness(req,res){
   let waist = req.body.result.parameters.unit_waist;
   let gender = req.body.result.parameters.unit_gender;
   let age = req.body.result.parameters.unit_age;
+  if(gender==="male"){
+    gender="m";
+  }else if(gender==="female"){
+    gender="f";
+  }
   
-  bmiCalc(height,heightUnit,weight,weightUnit,age,waist,gender,function(status,ideal_weight,risk){
+  if(heightUnit==="inch"){
+    heightUnit="in";
+  }
+  
+  bmiCalc(height,heightUnit,weight,weightUnit,age,waist,gender,function(status,ideal_weight,risk,err){
+    if(err != null){
     console.log(status,ideal_weight,risk);
+    }else{
+      console.log("data insufficient");
+    }
   });
 }
-
 
 
   function getNoResponse(req,res){
