@@ -194,7 +194,8 @@ function calcFitness(req,res){
   }
   
   if(heightUnit==="inch"){
-    heightUnit="in";
+    height=height*0.0833333;
+    heightUnit="cm";
   }
   
   bmiCalc(height,heightUnit,weight,weightUnit,age,waist,gender,function(status,ideal_weight,risk,err){

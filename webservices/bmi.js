@@ -1,5 +1,5 @@
 module.exports=function bmiCalc(height,heightUnit,weight,weightUnit,age,waist,gender,callback){
-// function bmiCalc(height,heightUnit,weight,weightUnit,age,waist,gender,callback){
+ //function bmiCalc(height,heightUnit,weight,weightUnit,age,waist,gender,callback){
     console.log("about to make get call to bmi api");
     var request = require("request");
 
@@ -22,8 +22,8 @@ module.exports=function bmiCalc(height,heightUnit,weight,weightUnit,age,waist,ge
     };
     console.log("Options : "+JSON.stringify(options));
     request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-    console.log("API response : ",body);
+    //if (error) throw new Error(error);
+    console.log("API response : ",JSON.stringify(body));
 
     if(body.hasOwnProperty('error')){
         callback(null,null,null,503);
@@ -35,6 +35,6 @@ module.exports=function bmiCalc(height,heightUnit,weight,weightUnit,age,waist,ge
     
 }
 
-// bmiCalc("170.00","cm","85.00","kg","23","34.00","m",function(status,range,risk){
+// bmiCalc("76","in","73","kg","3","28","m",function(status,range,risk){
 //     console.log(status,range,risk);
 // });
