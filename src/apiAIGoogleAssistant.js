@@ -199,9 +199,12 @@ function calcFitness(req,res){
   
   bmiCalc(height,heightUnit,weight,weightUnit,age,waist,gender,function(status,ideal_weight,risk,err){
     if(err != null){
-    console.log(status,ideal_weight,risk);
+      console.log("Data Insufficient");
     }else{
-      console.log("data insufficient");
+      console.log("Status : "+status);
+      console.log("Ideal Weight : "+ideal_weight);
+      console.log("Risk : "+risk);
+      
     }
   });
 }
