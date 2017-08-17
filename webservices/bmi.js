@@ -36,6 +36,6 @@ module.exports=function bmiCalc(height,heightUnit,weight,weightUnit,age,waist,ge
     
 }
 
-bmiCalc("170.00","cm","85.00","kg","23","34.00","m",function(status,range,risk){
-    console.log(status,range,risk);
-});
+// bmiCalc("170.00","cm","85.00","kg","23","34.00","m",function(status,range,risk){
+//     console.log(status,range,risk);
+// });
