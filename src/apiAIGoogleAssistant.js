@@ -211,7 +211,9 @@ function calcFitness(req,res){
       console.log("Status : "+status);
       console.log("Ideal Weight : "+ideal_weight);
       console.log("Risk : "+risk);
-      
+      var ResponseString = `Based on your data, your ideal weight should be between ${ideal_weight}. Compared to that, you are ${status}. You may have ${risk}`;
+      const assistant = new ApiAiApp({request: req, response: res});
+      basicCardBMITrigger(assistant,ResponseString);
     }
   });
 }
@@ -538,6 +540,16 @@ function processSymptom(req,res){
 //
 //---------------------------------------------------------------------------------------------------------------------------------
 //===================================RESPONSE FUNCTIONS BASED ON EACH INTENT FIRED=================================================
+function basicCardBMITrigger (app,ResponseToSendBackInResponse) {
+  app.ask(app.buildRichResponse()
+    .addSimpleResponse({speech: ResponseToSendBackInResponse, displayText: ''})
+    .addBasicCard(app.buildBasicCard(ResponseToSendBackInResponse)
+    .setSubtitle('Follow Up Question')
+    .setTitle('BMI Calculator')
+    .setImage(IMG_URL_AOG, 'Image alternate text'))
+  );//BASIC CARD
+}
+
 function basicCardDiagnosisTrigger (app,ResponseToSendBackInResponse) {
   app.ask(app.buildRichResponse()
     .addSimpleResponse({speech: ResponseToSendBackInResponse, displayText: ''})
