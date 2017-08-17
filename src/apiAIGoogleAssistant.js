@@ -180,13 +180,13 @@ function calcFitness(req,res){
   console.log(req.body.result.parameters.unit_length.unit,req.body.result.parameters.unit_waist,req.body.result.parameters.unit_weight.amount);
   console.log(req.body.result.parameters.unit_weight.unit);
   
-  let height = req.body.result.parameters.unit_length.amount;
-  let heightUnit = req.body.result.parameters.unit_length.unit;
-  let weight = req.body.result.parameters.unit_weight.amount;
-  let weightUnit = req.body.result.parameters.unit_weight.unit;
-  let waist = req.body.result.parameters.unit_waist;
-  let gender = req.body.result.parameters.unit_gender;
-  let age = req.body.result.parameters.unit_age;
+  let height = req.body.result.parameters.unit_length.amount.toString();
+  let heightUnit = req.body.result.parameters.unit_length.unit.toString();
+  let weight = req.body.result.parameters.unit_weight.amount.toString();
+  let weightUnit = req.body.result.parameters.unit_weight.unit.toString();
+  let waist = req.body.result.parameters.unit_waist.toString();
+  let gender = req.body.result.parameters.unit_gender.toString();
+  let age = req.body.result.parameters.unit_age.amount.toString();
   if(gender==="male"){
     gender="m";
   }else if(gender==="female"){
