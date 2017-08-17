@@ -209,8 +209,8 @@ function SendToParse(callback){
     headers:
     { 'postman-token': '785d8d42-c9fd-b137-d1da-e44cfa4d64f1',
      'cache-control': 'no-cache',
-     'app-id': '03d4fd34',
-     'app-key': '97fdf41e07745fe24dc8a7f8dfdad177',
+     'app-id': 'd4f32ee4',
+     'app-key': '78a4f3c44ee2ba85ca74c6fdee95828d',
      'content-type': 'application/json' },
      body: { text: global.symptomString, include_tokens: false },
      json: true };
@@ -232,8 +232,8 @@ function SendToDiagnose(callback){
   headers:
   { 'postman-token': 'c85c7ea4-fc05-cd5c-2936-d20592218957',
     'cache-control': 'no-cache',
-    'app-id': '03d4fd34',
-    'app-key': '97fdf41e07745fe24dc8a7f8dfdad177',
+    'app-id': 'd4f32ee4',
+    'app-key': '78a4f3c44ee2ba85ca74c6fdee95828d',
     'content-type': 'application/json' },
     body: global.buildBody,
     json: true };
@@ -520,8 +520,8 @@ function processSymptom(req,res){
     headers:
     { 'postman-token': '20cd3cf6-7a8e-9e62-3405-9603fd782d59',
     'cache-control': 'no-cache',
-    'app-id': '03d4fd34',
-    'app-key': '97fdf41e07745fe24dc8a7f8dfdad177',
+    'app-id': 'd4f32ee4',
+    'app-key': '78a4f3c44ee2ba85ca74c6fdee95828d',
     'content-type': 'application/json' } };
 
     request(options,function (error, response, body) {
