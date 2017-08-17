@@ -8,6 +8,8 @@ const awsServerlessExpressMiddleware = require('aws-serverless-express/middlewar
 
 var request=require('request');
 
+var bmiCalc= require("../webservices/bmi");
+
 const expressapp = express();
 
 expressapp.use(bodyParser.urlencoded({
@@ -45,6 +47,11 @@ console.log(req.body.result.action);
         else if(req.body.result.action==="UniversalNoIntent"){
           getNoResponse(req,res);
         }//fire Symptom Process Chain Intent
+
+        else if(req.body.result.action==="FitnessInput"){
+          calcFitness(req,res);
+        }////fire Symptom Process Chain Intent
+
 
 });
 //---------------------------------------------------------------------------------------------
@@ -168,7 +175,27 @@ console.log("FEEDBACK TRUE FOR YES INPUT INTENT TRIGGERED");
     }
   }
 
-function getNoResponse(req,res){
+function calcFitness(req,res){
+  console.log(req.body.result.parameters.unit_age,req.body.result.parameters.unit_gender,req.body.result.parameters.unit_length.amount);
+  console.log(req.body.result.parameters.unit_length.unit,req.body.result.parameters.unit_waist,req.body.result.parameters.unit_weight.amount);
+  console.log(req.body.result.parameters.unit_weight.unit);
+  
+  let height = req.body.result.parameters.unit_length.amount;
+  let heightUnit = req.body.result.parameters.unit_length.unit;
+  let weight = req.body.result.parameters.unit_weight.amount;
+  let weightUnit = req.body.result.parameters.unit_weight.unit;
+  let waist = req.body.result.parameters.unit_waist;
+  let gender = req.body.result.parameters.unit_gender;
+  let age = req.body.result.parameters.unit_age;
+  
+  bmiCalc(height,heightUnit,weight,weightUnit,age,waist,gender,function(status,ideal_weight,risk){
+    console.log(status,ideal_weight,risk);
+  });
+}
+
+
+
+  function getNoResponse(req,res){
   console.log("FEEDBACK TRUE FOR YES INPUT INTENT TRIGGERED");
 
     if(global.useCaseFlag==1)
