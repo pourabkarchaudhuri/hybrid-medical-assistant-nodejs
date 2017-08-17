@@ -94,16 +94,7 @@ function DiagnosisTrigger(req,res){
             console.log("Response Diagnosis Trigger for Google Family");
             basicCardDiagnosisTrigger(assistant,ResponseString);
         }
-        else if(req.body.originalRequest.source==='facebook'){
-          console.log("Response Diagnosis Trigger for Facebook Messenger");
-           var facebookResponse={
-                             "speech": ResponseString,
-                             "displayText": ResponseString,
-                             "contextOut": [],
-                             "source": "DuckDuckGo"
-                           };
-           res.send(facebookResponse);
-        }
+
 
         //This Function Builds the Custom Response for this Intent
         global.followUpCounter=0;
@@ -134,16 +125,7 @@ function SaySymptomTrigger(req,res){
        const assistant = new ApiAiApp({request: req, response: res});
        SimpleResponseFallbackInBadSymptom(assistant,ResponseToSendBackInResponse);
      }
-     else if(req.body.originalRequest.source==='facebook'){
 
-        var facebookResponse={
-                          "speech": ResponseToSendBackInResponse,
-                          "displayText": ResponseToSendBackInResponse,
-                          "contextOut": [],
-                          "source": "DuckDuckGo"
-                        };
-        res.send(facebookResponse);
-     }
 
    }
    else
@@ -377,34 +359,6 @@ function processSymptom(req,res){
                          basicCardFollowUpQuestion(assistant,ResponseToSendBackInResponse);
                      }
 
-                     else if(req.body.originalRequest.source==='facebook'){
-                       console.log("Response FollowUp Trigger for Facebook Messenger");
-                       var facebookResponse={
-                           "speech": "",
-                           "displayText": "",
-                           "data": {
-                               "facebook": {
-                                  "text": ResponseToSendBackInResponse,
-                                  "quick_replies": [
-                                    {
-                                      "content_type": "text",
-                                      "title": "Yes",
-                                      "payload": "yes"
-                                    },
-                                    {
-                                      "content_type": "text",
-                                      "title": "No",
-                                      "payload": "no"
-                                    }
-                                  ]
-                                }
-                               },
-                           "contextOut": [],
-                           "source": "DuckDuckGo"
-                         };
-                      res.send(facebookResponse);
-                     }
-
                      //':ask' mode
 
                      global.followUpCounter=1;
@@ -476,34 +430,7 @@ function processSymptom(req,res){
         console.log("Response FollowUp Group Type Trigger for Google Family");
         basicCardGroupTypeFollowUpQuestion(assistant,ResponseToSendBackInResponse);
     }
-    else if(req.body.originalRequest.source==='facebook'){
-      console.log("Response FollowUp Group Type Trigger for Facebook Messenger");
-      var facebookResponse={
-          "speech": "",
-          "displayText": "",
-          "data": {
-              "facebook": {
-                 "text": ResponseToSendBackInResponse,
-                 "quick_replies": [
-                   {
-                     "content_type": "text",
-                     "title": "Yes",
-                     "payload": "yes"
-                   },
-                   {
-                     "content_type": "text",
-                     "title": "No",
-                     "payload": "no"
-                   }
-                 ]
-               }
 
-            },
-          "contextOut": [],
-          "source": "DuckDuckGo"
-        };
-     res.send(facebookResponse);
-    }
     global.followUpCounter=1;
     global.yesFlag=0;
 
@@ -553,16 +480,7 @@ function processSymptom(req,res){
           console.log("Response Final Trigger for Google Family");
           basicCardFinalDiagnosis(assistant,ResponseToSendBackInResponse);
       }
-      else if(req.body.originalRequest.source==='facebook'){
-        console.log("Response Final Trigger for Facebook Messenger");
-        var facebookResponse={
-                          "speech": ResponseToSendBackInResponse,
-                          "displayText": ResponseToSendBackInResponse,
-                          "contextOut": [],
-                          "source": "DuckDuckGo"
-                        };
-       res.send(facebookResponse);
-     }
+    
 
       global.useCaseFlag=0;
 
