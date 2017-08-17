@@ -20,15 +20,14 @@ module.exports=function bmiCalc(height,heightUnit,weight,weightUnit,age,waist,ge
         },
             json: true 
     };
-    console.log("Options : "+options);
+    console.log("Options : "+JSON.stringify(options));
     request(options, function (error, response, body) {
     if (error) throw new Error(error);
-    console.log("API response : "+body);
+    console.log("API response : "+JSON.stringify(body));
+
     if(body.hasOwnProperty('error')){
         callback(null,null,null,503);
     }else{
-
-    
     console.log("inside webservices",body.bmi.status,body.ideal_weight,body.bmi.risk);
     callback(body.bmi.status,body.ideal_weight,body.bmi.risk,null);
      }
