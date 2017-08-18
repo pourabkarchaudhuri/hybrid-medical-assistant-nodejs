@@ -183,7 +183,7 @@ function calcFitness(req,res){
   console.log(req.body.result.parameters.unit_age,req.body.result.parameters.unit_gender,req.body.result.parameters.unit_length.amount);
   console.log(req.body.result.parameters.unit_length.unit,req.body.result.parameters.unit_waist,req.body.result.parameters.unit_weight.amount);
   console.log(req.body.result.parameters.unit_weight.unit);
-  
+
   let height = req.body.result.parameters.unit_length.amount;
   let heightUnit = req.body.result.parameters.unit_length.unit.toString();
   let weight = req.body.result.parameters.unit_weight.amount.toString();
@@ -196,7 +196,7 @@ function calcFitness(req,res){
   }else if(gender==="female"){
     gender="f";
   }
-  
+
   if(heightUnit==="inch"){
     height=height*2.54;
     height=height.toString();
@@ -207,7 +207,7 @@ function calcFitness(req,res){
     height=height.toString();
     heightUnit="cm";
   }
-  
+
   bmiCalc(height,heightUnit,weight,weightUnit,age,waist,gender,function(status,ideal_weight,risk,err){
     if(err != null){
       console.log("Data Insufficient");
@@ -228,7 +228,7 @@ function calcNutrition(req,res){
       basicListNutriTrigger(assistant,ResponseString);
 
 }
-  
+
 
   function getNoResponse(req,res){
   console.log("FEEDBACK TRUE FOR YES INPUT INTENT TRIGGERED");
@@ -542,7 +542,7 @@ function processSymptom(req,res){
           console.log("Response Final Trigger for Google Family");
           basicCardFinalDiagnosis(assistant,ResponseToSendBackInResponse);
       }
-    
+
 
       global.useCaseFlag=0;
 
@@ -621,28 +621,25 @@ function basicListNutriTrigger (app,ResponseString) {
 
       const b = app.buildList('List Title')
         // Add the first item to the list
-        .addItems(app.buildOptionItem(SELECTION_KEY_ONE,
-          ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
+        .addItems(app.buildOptionItem(
           .setTitle('Title of First List Item')
           .setDescription('This is a description of a list item')
           .setImage(IMG_URL_AOG, 'Image alternate text'))
         // Add the second item to the list
-        .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_HOME,
-          ['Google Home Assistant', 'Assistant on the Google Home'])
+        .addItems(app.buildOptionItem(
           .setTitle('Google Home')
           .setDescription('Google Home is a voice-activated speaker powered ' +
             'by the Google Assistant.')
           .setImage(IMG_URL_GOOGLE_HOME, 'Google Home')
         )
         // Add third item to the list
-        .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_PIXEL,
-          ['Google Pixel XL', 'Pixel', 'Pixel XL'])
+        .addItems(app.buildOptionItem(
           .setTitle('Google Pixel')
           .setDescription('Pixel. Phone by Google.')
           .setImage(IMG_URL_GOOGLE_PIXEL, 'Google Pixel')
         )
         // Add last item of the list
-        .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_ALLO, [])
+        .addItems(app.buildOptionItem(
           .setTitle('Google Allo')
           .setDescription('Introducing Google Allo, a smart messaging app ' +
             'that helps you say more and do more.')
@@ -662,9 +659,9 @@ function basicListNutriTrigger (app,ResponseString) {
         ['Basic Card', 'List', 'Carousel', 'Suggestions']),
       // Build a list
       b
-       
+
         // Add the second item to the list
-        
+
     );
   }
 function basicCardBMITrigger (app,ResponseToSendBackInResponse) {
