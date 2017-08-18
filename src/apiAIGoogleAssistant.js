@@ -553,7 +553,7 @@ function processSymptom(req,res){
 //===================================RESPONSE FUNCTIONS BASED ON EACH INTENT FIRED=================================================
 //basicListNutriTrigger
 
-function basicListNutriTrigger (app,ResponseString) {
+function Sample (app,ResponseString) {
    let buildList = app.buildList('List Title');
 
    for(i=0;i<=5;i++){
