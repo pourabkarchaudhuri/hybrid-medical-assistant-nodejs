@@ -664,7 +664,7 @@ function basicListNutriTrigger (app,ResponseString) {
       .addSuggestions(
         ['Basic Card', 'List', 'Carousel', 'Suggestions']),
       // Build a list
-      b
+      buildBlock
 
         // Add the second item to the list
 
