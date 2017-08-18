@@ -571,15 +571,15 @@ function basicListNutriTrigger (app,ResponseString) {
     app.askWithList(app.buildRichResponse()
       .addSimpleResponse('This is a simple response for a list')
       .addSuggestions(
-        ['Basic Card', 'List', 'Carousel', 'Suggestions']), buildList
+        ['Basic Card', 'List', 'Carousel', 'Suggestions']), 
       // Build a list
-      // app.buildList('List Title')
-      //   // Add the first item to the list
-      //   .addItems(app.buildOptionItem(SELECTION_KEY_ONE,
-      //     ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
-      //     .setTitle('Title of First List Item')
-      //     .setDescription('This is a description of a list item')
-      //     .setImage(IMG_URL_AOG, 'Image alternate text'))
+      app.buildList('List Title')
+        // Add the first item to the list
+        .addItems(app.buildOptionItem(SELECTION_KEY_ONE,
+          ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
+          .setTitle('Title of First List Item')
+          .setDescription('This is a description of a list item')
+          .setImage(IMG_URL_AOG, 'Image alternate text'))
       //   // // Add the second item to the list
         // .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_HOME,
         //   ['Google Home Assistant', 'Assistant on the Google Home'])
