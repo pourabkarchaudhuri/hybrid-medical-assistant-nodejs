@@ -556,7 +556,7 @@ function processSymptom(req,res){
 function basicListNutriTrigger (app,ResponseString) {
    let buildList = app.buildList('List Title');
 
-   for(i=0;i<1;i++){
+   for(i=0;i<=1;i++){
       buildList.addItems(app.buildOptionItem(SELECTION_KEY_ONE,
                 ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
                 .setTitle('Title of First List Item')
