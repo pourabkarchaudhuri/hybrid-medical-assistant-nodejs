@@ -554,123 +554,45 @@ function processSymptom(req,res){
 //basicListNutriTrigger
 
 function basicListNutriTrigger (app,ResponseString) {
-   let buildList = app.buildList('List Title');
-   let description=["hello 1","hello 2","hello 3","hello 4","hello 5"]
-
-   for(i=0;i<=5;i++){
-     console.log("building response");
-      buildList.addItems(app.buildOptionItem(SELECTION_KEY_ONE,
-                ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
-                .setTitle('Title of First List Item')
-                .setDescription(description[i])
-                .setImage(IMG_URL_AOG, 'Image alternate text'))
-   }
-
-
-
-    app.askWithList(app.buildRichResponse()
-      .addSimpleResponse('This is a simple response for a list')
+app.askWithCarousel(app.buildRichResponse()
+      .addSimpleResponse('This is a simple response for a carousel')
       .addSuggestions(
-        ['Basic Card', 'List', 'Carousel', 'Suggestions']), 
-      // Build a list
-      app.buildList('List Title')
-        // Add the first item to the list
+        ['Basic Card', 'List', 'Carousel', 'Suggestions']),
+      app.buildCarousel()
+        // Add the first item to the carousel
         .addItems(app.buildOptionItem(SELECTION_KEY_ONE,
           ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
           .setTitle('Title of First List Item')
-          .setDescription('This is a description of a list item')
+          .setDescription('This is a description of a carousel item')
           .setImage(IMG_URL_AOG, 'Image alternate text'))
-      //   // // Add the second item to the list
-        // .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_HOME,
-        //   ['Google Home Assistant', 'Assistant on the Google Home'])
-        //   .setTitle('Google Home')
-        //   .setDescription('Google Home is a voice-activated speaker powered ' +
-        //     'by the Google Assistant.')
-        //   .setImage(IMG_URL_GOOGLE_HOME, 'Google Home')
-        // )
-        // // Add third item to the list
-        // .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_PIXEL,
-        //   ['Google Pixel XL', 'Pixel', 'Pixel XL'])
-        //   .setTitle('Google Pixel')
-        //   .setDescription('Pixel. Phone by Google.')
-        //   .setImage(IMG_URL_GOOGLE_PIXEL, 'Google Pixel')
-        // )
-        // // Add last item of the list
-        // .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_ALLO, [])
-        //   .setTitle('Google Allo')
-        //   .setDescription('Introducing Google Allo, a smart messaging app ' +
-        //     'that helps you say more and do more.')
-        //   .setImage(IMG_URL_GOOGLE_ALLO, 'Google Allo Logo')
-        //   .addSynonyms('Allo')
-        // )
+        // Add the second item to the carousel
+        .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_HOME,
+          ['Google Home Assistant', 'Assistant on the Google Home'])
+          .setTitle('Google Home')
+          .setDescription('Google Home is a voice-activated speaker powered ' +
+            'by the Google Assistant.')
+          .setImage(IMG_URL_GOOGLE_HOME, 'Google Home')
+        )
+        // Add third item to the carousel
+        .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_PIXEL,
+          ['Google Pixel XL', 'Pixel', 'Pixel XL'])
+          .setTitle('Google Pixel')
+          .setDescription('Pixel. Phone by Google.')
+          .setImage(IMG_URL_GOOGLE_PIXEL, 'Google Pixel')
+        )
+        // Add last item of the carousel
+        .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_ALLO, [])
+          .setTitle('Google Allo')
+          .setDescription('Introducing Google Allo, a smart messaging app ' +
+            'that helps you say more and do more.')
+          .setImage(IMG_URL_GOOGLE_ALLO, 'Google Allo Logo')
+          .addSynonyms('Allo')
+        )
     );
+   
   }
 
-  //   function basicListNutriTrigger (app, ResponseString) {
-  //     var n = 5;
-  //     let description=["hello 1","hello 2","hello 3","hello 4","hello 5"]
-
-
-
-  //     let buildBlock = app.buildList('List Title');
-  //     for(var z=0; z < n; z++){
-  //       console.log("Building List Element : "+z);
-
-  //       buildBlock.addItems(app.buildOptionItem(SELECTION_KEY_ONE,
-  //                 ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
-  //                 .setTitle('Title of First List Item')
-  //                 .setDescription(description[z])
-  //                 .setImage(IMG_URL_AOG, 'Image alternate text'))
-  //     }
-
-  //     const b = app.buildList('List Title')
-  //       // Add the first item to the list
-  //       .addItems(app.buildOptionItem(SELECTION_KEY_ONE,
-  //         ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
-  //         .setTitle('Title of First List Item')
-  //         .setDescription('This is a description of a list item')
-  //         .setImage(IMG_URL_AOG, 'Image alternate text'))
-  //       // Add the second item to the list
-  //       .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_HOME,
-  //         ['Google Home Assistant', 'Assistant on the Google Home'])
-  //         .setTitle('Google Home')
-  //         .setDescription('Google Home is a voice-activated speaker powered ' +
-  //           'by the Google Assistant.')
-  //         .setImage(IMG_URL_GOOGLE_HOME, 'Google Home')
-  //       )
-  //       // Add third item to the list
-  //       .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_PIXEL,
-  //         ['Google Pixel XL', 'Pixel', 'Pixel XL'])
-  //         .setTitle('Google Pixel')
-  //         .setDescription('Pixel. Phone by Google.')
-  //         .setImage(IMG_URL_GOOGLE_PIXEL, 'Google Pixel')
-  //       )
-  //       // Add last item of the list
-  //       .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_ALLO, [])
-  //         .setTitle('Google Allo')
-  //         .setDescription('Introducing Google Allo, a smart messaging app ' +
-  //           'that helps you say more and do more.')
-  //         .setImage(IMG_URL_GOOGLE_ALLO, 'Google Allo Logo')
-  //         .addSynonyms('Allo')
-  //       );
-
-  //     console.log("---------------------------------");
-  //     console.log(JSON.stringify(buildBlock));
-  //     console.log("+++++++++++++++++++++++++++++++++");
-  //     console.log(JSON.stringify(b));
-  //     console.log("---------------------------------");
-
-  //     app.askWithList(app.buildRichResponse()
-  //     .addSimpleResponse('This is a simple response for a list')
-  //     .addSuggestions(
-  //       ['Basic Card', 'List', 'Carousel', 'Suggestions']),
-  //     // Build a list
-  //     buildBlock
-
-  //       // Add the second item to the list
-
-  //   );
-  // }
+  
 function basicCardBMITrigger (app,ResponseToSendBackInResponse) {
   app.ask(app.buildRichResponse()
     .addBasicCard(app.buildBasicCard(ResponseToSendBackInResponse)
