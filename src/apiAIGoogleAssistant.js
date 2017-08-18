@@ -566,7 +566,8 @@ app.askWithCarousel(app.buildRichResponse()
         ['Basic Card', 'List', 'Carousel', 'Suggestions']),
 
 
-      app.buildCarousel().x
+      app.buildCarousel()
+      .x
     );
    
   }
