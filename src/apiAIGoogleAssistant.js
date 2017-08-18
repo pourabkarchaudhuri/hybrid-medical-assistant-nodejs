@@ -609,55 +609,41 @@ function basicListNutriTrigger (app,ResponseString) {
       var n = 5;
 
       let buildBlock = app.buildList('List Title');
-      let temp = null;
       for(var z=0; z < n; z++){
         console.log("Building List Element : "+z);
 
-        if (temp == null){
-          temp = buildBlock.addItems(app.buildOptionItem(SELECTION_KEY_ONE,
-                    ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
-                    .setTitle('Title of First List Item')
-                    .setDescription('This is a description of a list item')
-                    .setImage(IMG_URL_AOG, 'Image alternate text'))
-        } else {
-          temp = temp.addItems(app.buildOptionItem(SELECTION_KEY_ONE,
-                    ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
-                    .setTitle('Title of First List Item')
-                    .setDescription('This is a description of a list item')
-                    .setImage(IMG_URL_AOG, 'Image alternate text'))          
-        }
+        buildBlock.addItems(app.buildOptionItem(SELECTION_KEY_ONE,
+                  ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
+                  .setTitle('Title of First List Item')
+                  .setDescription('This is a description of a list item')
+                  .setImage(IMG_URL_AOG, 'Image alternate text'))
       }
 
       const b = app.buildList('List Title')
         // Add the first item to the list
         .addItems(app.buildOptionItem(SELECTION_KEY_ONE,
-          ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
-          .setTitle('Title of First List Item')
-          .setDescription('This is a description of a list item')
-          .setImage(IMG_URL_AOG, 'Image alternate text'))
+                  ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
+                  .setTitle('Title of First List Item')
+                  .setDescription('This is a description of a list item')
+                  .setImage(IMG_URL_AOG, 'Image alternate text'))
         // Add the second item to the list
-        .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_HOME,
-          ['Google Home Assistant', 'Assistant on the Google Home'])
-          .setTitle('Google Home')
-          .setDescription('Google Home is a voice-activated speaker powered ' +
-            'by the Google Assistant.')
-          .setImage(IMG_URL_GOOGLE_HOME, 'Google Home')
-        )
+        .addItems(app.buildOptionItem(SELECTION_KEY_ONE,
+                  ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
+                  .setTitle('Title of First List Item')
+                  .setDescription('This is a description of a list item')
+                  .setImage(IMG_URL_AOG, 'Image alternate text'))
         // Add third item to the list
-        .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_PIXEL,
-          ['Google Pixel XL', 'Pixel', 'Pixel XL'])
-          .setTitle('Google Pixel')
-          .setDescription('Pixel. Phone by Google.')
-          .setImage(IMG_URL_GOOGLE_PIXEL, 'Google Pixel')
-        )
+        .addItems(app.buildOptionItem(SELECTION_KEY_ONE,
+                  ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
+                  .setTitle('Title of First List Item')
+                  .setDescription('This is a description of a list item')
+                  .setImage(IMG_URL_AOG, 'Image alternate text'))
         // Add last item of the list
-        .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_ALLO, [])
-          .setTitle('Google Allo')
-          .setDescription('Introducing Google Allo, a smart messaging app ' +
-            'that helps you say more and do more.')
-          .setImage(IMG_URL_GOOGLE_ALLO, 'Google Allo Logo')
-          .addSynonyms('Allo')
-        );
+       .addItems(app.buildOptionItem(SELECTION_KEY_ONE,
+                  ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
+                  .setTitle('Title of First List Item')
+                  .setDescription('This is a description of a list item')
+                  .setImage(IMG_URL_AOG, 'Image alternate text'));
 
       console.log("---------------------------------");
       console.log(JSON.stringify(buildBlock));
@@ -670,7 +656,7 @@ function basicListNutriTrigger (app,ResponseString) {
       .addSuggestions(
         ['Basic Card', 'List', 'Carousel', 'Suggestions']),
       // Build a list
-      temp
+      b
        
         // Add the second item to the list
         
