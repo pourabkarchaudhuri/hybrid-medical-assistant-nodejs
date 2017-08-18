@@ -52,6 +52,10 @@ console.log(req.body.result.action);
           calcFitness(req,res);
         }////fire Symptom Process Chain Intent
 
+        else if(req.body.result.action==="NutritionDescription"){
+          calcNutrition(req,res);
+        }////fire Symptom Process Chain Intent
+
 
 });
 //---------------------------------------------------------------------------------------------
@@ -174,7 +178,7 @@ console.log("FEEDBACK TRUE FOR YES INPUT INTENT TRIGGERED");
       }
     }
   }
-
+//==============================================================================================================================================================================
 function calcFitness(req,res){
   console.log(req.body.result.parameters.unit_age,req.body.result.parameters.unit_gender,req.body.result.parameters.unit_length.amount);
   console.log(req.body.result.parameters.unit_length.unit,req.body.result.parameters.unit_waist,req.body.result.parameters.unit_weight.amount);
@@ -217,7 +221,14 @@ function calcFitness(req,res){
     }
   });
 }
+function calcNutrition(req,res){
+  console.log("DESCRIPTION :",req.body.result.parameters.nutrition_desc);
+  var ResponseString = req.body.result.parameters.nutrition_desc;
+      const assistant = new ApiAiApp({request: req, response: res});
+      basicListNutriTrigger(assistant,ResponseString);
 
+}
+  
 
   function getNoResponse(req,res){
   console.log("FEEDBACK TRUE FOR YES INPUT INTENT TRIGGERED");
@@ -540,6 +551,47 @@ function processSymptom(req,res){
 //
 //---------------------------------------------------------------------------------------------------------------------------------
 //===================================RESPONSE FUNCTIONS BASED ON EACH INTENT FIRED=================================================
+//basicListNutriTrigger
+
+function basicListNutriTrigger (app,ResponseString) {
+    app.askWithList(app.buildRichResponse()
+      .addSimpleResponse('This is a simple response for a list')
+      .addSuggestions(
+        ['Basic Card', 'List', 'Carousel', 'Suggestions']),
+      // Build a list
+      app.buildList('List Title')
+        // Add the first item to the list
+        .addItems(app.buildOptionItem(SELECTION_KEY_ONE,
+          ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
+          .setTitle('Title of First List Item')
+          .setDescription('This is a description of a list item')
+          .setImage(IMG_URL_AOG, 'Image alternate text'))
+        // Add the second item to the list
+        .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_HOME,
+          ['Google Home Assistant', 'Assistant on the Google Home'])
+          .setTitle('Google Home')
+          .setDescription('Google Home is a voice-activated speaker powered ' +
+            'by the Google Assistant.')
+          .setImage(IMG_URL_GOOGLE_HOME, 'Google Home')
+        )
+        // Add third item to the list
+        .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_PIXEL,
+          ['Google Pixel XL', 'Pixel', 'Pixel XL'])
+          .setTitle('Google Pixel')
+          .setDescription('Pixel. Phone by Google.')
+          .setImage(IMG_URL_GOOGLE_PIXEL, 'Google Pixel')
+        )
+        // Add last item of the list
+        .addItems(app.buildOptionItem(SELECTION_KEY_GOOGLE_ALLO, [])
+          .setTitle('Google Allo')
+          .setDescription('Introducing Google Allo, a smart messaging app ' +
+            'that helps you say more and do more.')
+          .setImage(IMG_URL_GOOGLE_ALLO, 'Google Allo Logo')
+          .addSynonyms('Allo')
+        )
+    );
+  }
+
 function basicCardBMITrigger (app,ResponseToSendBackInResponse) {
   app.ask(app.buildRichResponse()
     .addBasicCard(app.buildBasicCard(ResponseToSendBackInResponse)
