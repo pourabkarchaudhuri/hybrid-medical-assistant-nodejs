@@ -607,15 +607,16 @@ function basicListNutriTrigger (app,ResponseString) {
 
     function basicListNutriTrigger (app, ResponseString) {
       var n = 5;
-      let buildBlock=app.buildList('List Title');
+
+      let buildBlock = () => { return app.buildList('List Title'); }
+
       for(var z=0;z<n;z++){
       console.log("Building List Element : "+z);
-
-      buildBlock.addItems(app.buildOptionItem(SELECTION_KEY_ONE,
-                ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
-                .setTitle('Title of First List Item')
-                .setDescription('This is a description of a list item')
-                .setImage(IMG_URL_AOG, 'Image alternate text'))
+        buildBlock().addItems(app.buildOptionItem(SELECTION_KEY_ONE,
+                  ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
+                  .setTitle('Title of First List Item')
+                  .setDescription('This is a description of a list item')
+                  .setImage(IMG_URL_AOG, 'Image alternate text'))
       }
 
       app.askWithList(app.buildRichResponse()
