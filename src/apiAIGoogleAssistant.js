@@ -607,6 +607,9 @@ function basicListNutriTrigger (app,ResponseString) {
 
     function basicListNutriTrigger (app, ResponseString) {
       var n = 5;
+      let description=["hello 1","hello 2","hello 3","hello 4","hello 5"]
+
+
 
       let buildBlock = app.buildList('List Title');
       for(var z=0; z < n; z++){
@@ -615,7 +618,7 @@ function basicListNutriTrigger (app,ResponseString) {
         buildBlock.addItems(app.buildOptionItem(SELECTION_KEY_ONE,
                   ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
                   .setTitle('Title of First List Item')
-                  .setDescription('This is a description of a list item')
+                  .setDescription(description[z])
                   .setImage(IMG_URL_AOG, 'Image alternate text'))
       }
 
