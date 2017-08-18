@@ -619,6 +619,8 @@ function basicListNutriTrigger (app,ResponseString) {
                   .setImage(IMG_URL_AOG, 'Image alternate text'))
       }
 
+      console.log(buildBlock);
+
       app.askWithList(app.buildRichResponse()
       .addSimpleResponse('This is a simple response for a list')
       .addSuggestions(
