@@ -553,7 +553,7 @@ function processSymptom(req,res){
 //===================================RESPONSE FUNCTIONS BASED ON EACH INTENT FIRED=================================================
 //basicListNutriTrigger
 
-function Sample (app,ResponseString) {
+function basicListNutriTrigger (app,ResponseString) {
    let buildList = app.buildList('List Title');
 
    for(i=0;i<=5;i++){
@@ -608,11 +608,11 @@ function Sample (app,ResponseString) {
     function basicListNutriTrigger (app, ResponseString) {
       var n = 5;
 
-      let buildBlock = () => { return app.buildList('List Title'); }
+      let buildBlock = app.buildList('List Title');
+      for(var z=0; z < n; z++){
+        console.log("Building List Element : "+z);
 
-      for(var z=0;z<n;z++){
-      console.log("Building List Element : "+z);
-        buildBlock().addItems(app.buildOptionItem(SELECTION_KEY_ONE,
+        buildBlock.addItems(app.buildOptionItem(SELECTION_KEY_ONE,
                   ['synonym of title 1', 'synonym of title 2', 'synonym of title 3'])
                   .setTitle('Title of First List Item')
                   .setDescription('This is a description of a list item')
