@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "PourabKarchaudhuri@36023",
+  "author": "PourabKarchaudhuri",
   "license": "ISC",
   "dependencies": {
     "alexa-sdk": "^1.0.8",
