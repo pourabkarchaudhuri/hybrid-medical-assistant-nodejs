@@ -1,10 +1,9 @@
 //Authors : Pourab Karchaudhuri, Abhishek Dash
 //Description : Hybrid MultiChannel Node.js Script for MultiChannel Functionality
-//Alexa ARN : arn:aws:lambda:us-east-1:458140612472:function:myRoutFinder
-//API.AI Webhook : https://w22iydl6p9.execute-api.us-east-1.amazonaws.com/Dev
-//Android, HTML and iOS API.AI Developer Client ID  : a66431caef284e66a107b7137d9bb874
+
+//Android, HTML and iOS API.AI Developer Client ID 
 //github Repo : https://github.com/pourabkarchaudhuri/hybrid-routfinder-nodejs
-//Testing Accounts : htlp003@gmail.com
+
 /*
 Existing Functional Channels
 ----------------------------
@@ -56,6 +55,4 @@ exports.handler = function(event, context, callback){
 
 // var handlers = sessionHandlers;
 //===============================================ONE CODE TO RULE THEM ALL===================================================
-/*Yours Truly : Hexaware Innovation Lab (A.K.A : The Geek Squad);☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☻☻☻☻☻☻☻☻☻☻☻☻☻☺☺☺☺☻☻☻☻☺☺*/
-/*Yours Truly : Hexaware Innovation Lab (A.K.A : The Geek Squad);☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☻☻☻☻☻☻☻☻☻☻☻☻☻☺☺☺☺☻☻☻☻☺☺*/
-/*Yours Truly : Hexaware Innovation Lab (A.K.A : The Geek Squad);☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☻☻☻☻☻☻☻☻☻☻☻☻☻☺☺☺☺☻☻☻☻☺☺*/
+
